@@ -1,6 +1,6 @@
 # Template file for 'termite'
 pkgname=termite
-version=14
+version=15
 revision=1
 _utilcommit=62faf9e
 build_style=gnu-makefile
@@ -13,7 +13,7 @@ license="GPL-2.0-or-later"
 homepage="https://github.com/thestinger/termite"
 distfiles="https://github.com/thestinger/termite/archive/v${version}.tar.gz>termite-${version}.tar.gz
  https://github.com/thestinger/util/archive/${_utilcommit}.tar.gz>util-${_utilcommit}.tar.gz"
-checksum="0ef2ffaf2c7490b958ead45ff93dd5618636cfb5a5449ce4c87d068c748fe722
+checksum="3ae9ebef28aad081c6c11351f086776e2fd9547563b2f900732b41c376bec05a
  c62be725845c52751d9bd7a8defaff9ad1b29c473c0c279ad64f2cc59befaf2b"
 
 post_extract() {
