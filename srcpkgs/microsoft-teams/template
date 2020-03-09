@@ -1,0 +1,47 @@
+# Template file for 'microsoft-teams'
+pkgname=microsoft-teams
+version=1.3.00.958
+revision=1
+archs="x86_64"
+build_style="fetch"
+hostmakedepends="tar xz"
+depends="libsecret"
+short_desc="Microsoft Teams for Linux is your chat-centered workspace in Office 365"
+maintainer="Hung Nguyen <ndgnuh@protonmail.com>"
+license="proprietary"
+homepage="teams.microsoft.com"
+repository="nonfree"
+shlib_provides="libGLESv2.so"
+nopie="yes"
+nostrip="yes"
+
+_filename="teams_${version}_amd64.deb"
+distfiles="https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/${_filename}"
+checksum=a50de47977e81f5ba924af5c7eb9e5a76b86e2c047762bc749924cbe5ee7aa04
+
+do_extract() {
+	ar p ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_filename} data.tar.xz | tar xJpf - ./usr
+}
+
+do_install() {
+	vmkdir usr/share/applications
+	vinstall usr/share/applications/teams.desktop 644 usr/share/applications
+
+	vmkdir usr/share/pixmaps
+	vinstall usr/share/pixmaps/teams.png 644 usr/share/pixmaps
+
+	rm usr/share/teams/resources/assets/{x86,x64,windows,tlb} -d
+	vmkdir usr/lib/teams
+	for item in chrome_100_percent.pak chrome_200_percent.pak icudtl.dat libEGL.so libGLESv2.so libffmpeg.so locales natives_blob.bin resources resources.pak snapshot_blob.bin swiftshader teams v8_context_snapshot.bin; do
+		vcopy "usr/share/teams/${item}" "usr/lib/teams"
+	done
+
+	# symlink executable
+	vmkdir usr/bin
+	ln -sf /usr/lib/teams/teams $DESTDIR/usr/bin/ms-teams
+}
+
+post_install() {
+	vlicense usr/share/teams/LICENSE
+	vlicense usr/share/teams/LICENSES.chromium.html
+}
