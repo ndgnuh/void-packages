@@ -1,5 +1,5 @@
 --- config.def.h	2020-05-05 19:53:57.186586201 +0700
-+++ config.h	2020-05-05 20:42:40.566589259 +0700
++++ config.h	2020-05-06 00:06:45.906602067 +0700
 @@ -5,8 +5,8 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
@@ -11,6 +11,15 @@
  
  /*
   * What program is execed by st depends of these precedence rules:
+@@ -19,7 +19,7 @@
+ static char *shell = "/bin/sh";
+ char *utmp = NULL;
+ /* scroll program: to enable use a string like "scroll" */
+-char *scroll = NULL;
++char *scroll = "scroll";
+ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+ 
+ /* identification sequence returned in DA and DECID */
 @@ -27,14 +27,14 @@
  
  /* Kerning / character bounding-box multipliers */
