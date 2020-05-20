@@ -1,20 +1,20 @@
 # Template file for 'wine'
 pkgname=wine
-version=5.7
+version=5.8
 revision=2
 build_style=gnu-configure
-configure_args="--without-gstreamer --bindir=/usr/libexec/wine"
+configure_args="--bindir=/usr/libexec/wine"
 short_desc="Run Microsoft Windows applications"
 maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="http://www.winehq.org/"
 distfiles="https://dl.winehq.org/wine/source/${version%%.*}.x/wine-${version}.tar.xz"
-checksum=16c99b9c6db56f75fcc2c6b3cbae400db1da1f750edba0249fd0fc288a9b4712
+checksum=cbad04c261437abec16945cd7ca83c77950f3e03099d7e3f883a6ea7293233cf
 
 lib32mode=full
-archs="i686 x86_64"
+archs="i686 x86_64*"
 
-hostmakedepends="pkg-config flex prelink gettext"
+hostmakedepends="pkg-config flex gettext"
 makedepends="gettext-devel lcms2-devel zlib-devel ncurses-devel
  glu-devel libSM-devel libXext-devel libX11-devel libXpm-devel
  libXinerama-devel libXcomposite-devel libXmu-devel libXxf86vm-devel
@@ -24,11 +24,11 @@ makedepends="gettext-devel lcms2-devel zlib-devel ncurses-devel
  mpg123-devel libgsm-devel libopenal-devel giflib-devel libpng-devel
  v4l-utils-devel fontconfig-devel gnutls-devel dbus-devel sane-devel
  libpcap-devel cups-devel ocl-icd-devel vulkan-loader vkd3d-devel
- FAudio-devel"
+ FAudio-devel gst-plugins-base1-devel"
 depends="libXi libXinerama libXcomposite libXcursor libOSMesa
  desktop-file-utils hicolor-icon-theme liberation-fonts-ttf
  gnutls"
-depends="wine-common"
+depends="wine-common>=${version}_${revision}"
 
 case $XBPS_TARGET_MACHINE in
 	x86_64*) configure_args+=" --enable-win64 --libdir=/usr/lib"
@@ -39,6 +39,10 @@ case $XBPS_TARGET_MACHINE in
 		_wineserver_suffix="32"
 		;;
 esac
+
+if [ "$XBPS_LIBC" = "glibc" ]; then
+	hostmakedepends+=" prelink"
+fi
 
 _wine_libexec="/usr/libexec/wine"
 nopie_files="${_wine_libexec}/wine${_wine_suffix}"
@@ -85,7 +89,7 @@ wine-common_package() {
 	binfmts="/usr/bin/wine --magic MZ"
 	pkg_install() {
 		vmove usr/share
-		vmove etc
+		vmove etc/fonts
 		for file in wine wineserver msiexec regedit regsvr32 wineboot winecfg winepath winemine winefile winedbg wineconsole notepad msidb
 		do
 			vmove usr/bin/${file}
