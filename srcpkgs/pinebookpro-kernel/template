@@ -1,15 +1,15 @@
 # Template file for 'pinebookpro-kernel'
 pkgname=pinebookpro-kernel
-version=5.5.0
+version=5.6.0
 revision=1
-_commit=799b9141e48783a0844187ad00855b3d53f77998
+_commit=93293259039d6fc3a725961d42b4f11bfc3f5127
 wrksrc="linux-pinebook-pro-${_commit}"
 short_desc="Linux kernel for Pinebook Pro (${version%.*} series)"
 maintainer="Renato Aguiar <renato@renatoaguiar.net>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
 distfiles="https://gitlab.manjaro.org/tsys/linux-pinebook-pro/-/archive/${_commit}/linux-pinebook-pro-${_commit}.tar.gz"
-checksum=81cc691e5772ab710621db9e8e67a4d3c1f7121024ebce0df962003694c53e9d
+checksum=61f59cd28fa560f939917f1c1315fecce0db4b1bf0a5b64296cd9aaee9f0adb1
 patch_args="-Np1"
 
 archs="aarch64*"

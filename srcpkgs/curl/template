@@ -1,6 +1,6 @@
 # Template file for 'curl'
 pkgname=curl
-version=7.69.0
+version=7.70.0
 revision=2
 build_style=gnu-configure
 configure_args="ac_cv_sizeof_off_t=8 --enable-threaded-resolver --enable-ipv6
@@ -20,7 +20,7 @@ license="MIT"
 homepage="https://curl.haxx.se"
 changelog="https://curl.haxx.se/changes.html#${version//./_}"
 distfiles="${homepage}/download/${pkgname}-${version}.tar.bz2"
-checksum=668d451108a7316cff040b23c79bc766e7ed84122074e44f662b8982f2e76739
+checksum=a50bfe62ad67a24f8b12dd7fd655ac43a0f0299f86ec45b11354f25fbb5829d0
 patch_args="-Np1"
 build_options="gnutls gssapi ldap rtmp ssh ssl"
 build_options_default="ssh ssl"
@@ -33,6 +33,9 @@ pre_configure() {
 }
 
 post_install() {
+	# Don't touch --configure, it reflect how curl was built
+	vsed -e "/[	 ]*--static-libs)/,/[	 ]*;;/ s,-L$XBPS_CROSS_BASE,-L," \
+		-i $DESTDIR/usr/bin/curl-config
 	vlicense COPYING
 }
 

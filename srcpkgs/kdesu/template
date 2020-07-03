@@ -1,6 +1,6 @@
 # Template file for 'kdesu'
 pkgname=kdesu
-version=5.67.0
+version=5.70.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -12,7 +12,7 @@ maintainer="John <johnz@posteo.net>"
 license="LGPL-2.0-only"
 homepage="https://projects.kde.org/projects/frameworks/kdesu"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=0e06f5422b6386b4a9b0ed7211943e73b5c47ba83226f26a91c9b5c4aa01b0ed
+checksum=b53806e2edc5c9e5e326b9c189fa2f06ebb4d02009945c5b2f123f2ecf4b629e
 
 kdesu-devel_package() {
 	short_desc+=" - development"

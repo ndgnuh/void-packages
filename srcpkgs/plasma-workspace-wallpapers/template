@@ -1,6 +1,6 @@
 # Template file for 'plasma-workspace-wallpapers'
 pkgname=plasma-workspace-wallpapers
-version=5.18.2
+version=5.19.0
 revision=1
 archs=noarch
 build_style=cmake
@@ -11,4 +11,4 @@ maintainer="John <johnz@posteo.net>"
 license="GPL-2.0-or-later"
 homepage="https://projects.kde.org/projects/plasma/plasma-workspace-wallpapers"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=b5fe558d7da275834bd1cb4cdb398a619a606fe267b4d4b580cc0c8db10db1b8
+checksum=fc4224a0c68e0ad44ca5894effedf6b4be92514d5905659825f4eb94f43e118b

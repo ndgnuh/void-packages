@@ -1,6 +1,6 @@
 # Template file for 'kxmlrpcclient'
 pkgname=kxmlrpcclient
-version=5.67.0
+version=5.70.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -12,7 +12,7 @@ maintainer="John <johnz@posteo.net>"
 license="LGPL-2.1-or-later, BSD-2-Clause"
 homepage="https://projects.kde.org/projects/frameworks/kxmlrpcclient"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=04f202129c07decbcaef5bf5a227fe7250e0efbf12ea76b3e18cfd5ffb502f44
+checksum=0b75fdd516efa6f2c7eec58eccca0c7949c4e7f98e2b5b2494283a9fb8d8aeb2
 
 post_install() {
 	vlicense COPYING.BSD
