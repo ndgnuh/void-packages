@@ -1,6 +1,6 @@
 # Template file for 'python3-hypercorn'
 pkgname=python3-hypercorn
-version=0.10.0
+version=0.10.2
 revision=1
 archs=noarch
 wrksrc="${pkgname#*-}-${version}"
@@ -16,7 +16,7 @@ license="MIT"
 homepage="https://gitlab.com/pgjones/hypercorn"
 changelog="https://gitlab.com/pgjones/hypercorn/-/blob/master/CHANGELOG.rst"
 distfiles="${homepage}/-/archive/${version}/${pkgname#*-}-${version}.tar.gz"
-checksum=9e47c1b40fdfbaa6dbc5b79ef28ab2e7b50855ae0eabab72c561198128324986
+checksum=d22823c5692c1b97247898508d618f91f700beb5bf1157dc4d09893842fe87e9
 
 post_install() {
 	vlicense LICENSE

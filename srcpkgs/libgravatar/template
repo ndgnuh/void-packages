@@ -1,17 +1,17 @@
 # Template file for 'libgravatar'
 pkgname=libgravatar
-version=20.04.1
+version=20.04.3
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools python3
  gettext kcoreaddons kconfig"
 makedepends="pimcommon-devel"
 short_desc="KDE PIM library providing Gravatar support"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/libgravatar-${version}.tar.xz"
-checksum=22275231f63c625fa60ff8ddaf1cd52f2fa03ccea7c010a6231b883c45640125
+checksum=0a5eadd5c8492eb17225e0ff2d221f69231e72ca9b8a78080301639662a18acf
 
 libgravatar-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"

@@ -1,13 +1,13 @@
 # Template file for 'tuxguitar'
 pkgname=tuxguitar
 version=1.5.3
-revision=1
+revision=2
 wrksrc="${pkgname}-${version}-src"
 hostmakedepends="apache-maven openjdk8"
 makedepends="alsa-lib-devel fluidsynth-devel jack-devel"
 depends="openjdk8-jre icedtea-sound gtk+3 hicolor-icon-theme desktop-file-utils"
 short_desc="Multitrack guitar tablature editor and player"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-only"
 homepage="http://www.tuxguitar.com.ar/"
 distfiles="${SOURCEFORGE_SITE}/tuxguitar/tuxguitar-${version}-src.tar.gz"
