@@ -1,6 +1,6 @@
 # Template file for 'ki18n'
 pkgname=ki18n
-version=5.72.0
+version=5.74.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -11,7 +11,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later"
 homepage="https://invent.kde.org/frameworks/ki18n"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=080e6f0e71a82f5aa72d47f52c3a8b2cddf3491897b3484b6d22c248dd669f6a
+checksum=bcbb95a81cd8f808fc8314741309c4b4ec25fc1c347e285a7cfefc006df3009c
 
 ki18n-devel_package() {
 	short_desc+=" - development"

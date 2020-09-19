@@ -1,6 +1,6 @@
 # Template file for 'perltidy'
 pkgname=perltidy
-version=20200619
+version=20200907
 revision=1
 archs=noarch
 wrksrc="Perl-Tidy-${version}"
@@ -13,4 +13,4 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
 homepage="https://metacpan.org/release/Perl-Tidy"
 distfiles="${CPAN_SITE}/Perl/Perl-Tidy-${version}.tar.gz"
-checksum=03b0e1b777c95920053d37942d6398a56b746d7c78090d522371138785c8a09e
+checksum=72c9324a188ecf7c9cd4ed8b7718be993ad77d4d9bc770b284caa17278467c18

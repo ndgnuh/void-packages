@@ -1,8 +1,7 @@
 # Template file for 'straw-viewer'
 pkgname=straw-viewer
-version=0.0.6
+version=0.0.9
 revision=1
-archs=noarch
 build_style=perl-ModuleBuild
 configure_args="--gtk"
 hostmakedepends="perl-Module-Build"
@@ -14,7 +13,7 @@ license="Artistic-2.0"
 homepage="https://github.com/trizen/straw-viewer"
 changelog="https://github.com/trizen/straw-viewer/releases"
 distfiles="https://github.com/trizen/straw-viewer/archive/${version}.tar.gz"
-checksum=b3bce2bb8e38bcf6a0f184721477c9753f23ae4ea2d26f1e23443b3ea8574f2c
+checksum=8c17b1bb51269d7150ff3b2bdfddfcc299be20d2435b1e2b7f298f3bfbaab4e4
 
 gtk-straw-viewer_package() {
 	depends="${sourcepkg}-${version}_${revision} perl-Gtk3 perl-File-ShareDir"

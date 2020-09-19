@@ -1,7 +1,7 @@
 # Template file for 'sqmail'
 pkgname=sqmail
-version=4.0.07
-revision=5
+version=4.0.09
+revision=1
 create_wrksrc=yes
 build_wrksrc="mail/${pkgname}/${pkgname}-${version}/src"
 makedepends="fehQlibs libidn2-devel ucspi-ssl-devel"
@@ -11,7 +11,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Public Domain"
 homepage="https://www.fehcom.de/sqmail/sqmail.html"
 distfiles="https://www.fehcom.de/sqmail/sqmail-${version}.tgz"
-checksum=6ec1387fc43002148e9fc418fdc406ca88ee69c30210e7b736b35509ad098a81
+checksum=6ddcc336693280adc900083c9ba3cdd76a1ecb2a76d242698336fbd83f12ebf7
 nocross="custom build system"
 provides="smtp-server-0_1"
 replaces="smtp-server>=0"
