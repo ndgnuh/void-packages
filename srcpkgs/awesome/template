@@ -6,7 +6,7 @@ build_style=cmake
 build_helper="qemu"
 configure_args="-DSYSCONFDIR=/etc"
 conf_files="/etc/xdg/awesome/rc.lua"
-hostmakedepends="ruby-asciidoctor ImageMagick pkg-config xmlto"
+hostmakedepends="ruby-asciidoctor ImageMagick pkg-config xmlto $(vopt_if git git)"
 makedepends="libxcb-devel pango-devel xcb-util-devel xcb-util-image-devel
  xcb-util-keysyms-devel xcb-util-wm-devel xcb-util-cursor-devel
  startup-notification-devel imlib2-devel libxdg-basedir-devel
@@ -16,11 +16,21 @@ short_desc="Highly configurable, next gen framework window manager for X"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="http://awesomewm.org"
-distfiles="https://github.com/awesomeWM/awesome/releases/download/v${version}/awesome-${version}.tar.xz"
-checksum=78264d6f012350b371e339127aca485260bc0aa935eff578ba75ce1a00e11753
 
-build_options="jit"
+build_options="jit git"
 desc_option_jit="Use LuaJIT to build Awesome"
+desc_option_git="Use GIT Version"
+
+if [ "$build_option_git" ]; then
+	do_fetch() {
+		git clone https://github.com/awesomeWM/awesome $wrksrc
+		cd $wrksrc
+	}
+else
+	distfiles="https://github.com/awesomeWM/awesome/releases/download/v${version}/awesome-${version}.tar.xz"
+	checksum=78264d6f012350b371e339127aca485260bc0aa935eff578ba75ce1a00e11753
+fi
+
 
 if [ "$build_option_jit" ]; then
 	hostmakedepends+=" LuaJIT lua51-lgi"
