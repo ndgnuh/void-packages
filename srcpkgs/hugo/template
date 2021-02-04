@@ -1,6 +1,6 @@
 # Template file for 'hugo'
 pkgname=hugo
-version=0.74.2
+version=0.80.0
 revision=1
 build_style=go
 go_import_path="github.com/gohugoio/${pkgname}"
@@ -12,7 +12,7 @@ maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="Apache-2.0"
 homepage="https://gohugo.io"
 distfiles="https://${go_import_path}/archive/v${version}.tar.gz"
-checksum=abf3ace9367f87ec80c17a19c8e13dc7bdf555f1e5f6fb02b5ca2bf036afbf21
+checksum=4ddcd6ebea21e5fd4067db4a481ab7810e34496d5991a3520169c8f5ee1d38bb
 
 build_options="pygments extended"
 desc_option_pygments="Alternative syntax highlighter"

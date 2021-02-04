@@ -1,6 +1,6 @@
 # Template file for 'nwg-launchers'
 pkgname=nwg-launchers
-version=0.3.2
+version=0.4.4
 revision=1
 build_style=meson
 hostmakedepends="pkg-config"
@@ -10,4 +10,4 @@ maintainer="Érico Nogueira <ericonr@disroot.org>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/nwg-piotr/nwg-launchers"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=a2a993eb92b48991f5af6e88a63583d83a8418964648d13deabeb4b012b77a6c
+checksum=c8a0efdfdcad764bea08c677b9ee81d46a723815a005bc8b88bb5b726d0231cc

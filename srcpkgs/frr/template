@@ -1,7 +1,7 @@
 # Template file for 'frr'
 pkgname=frr
 version=7.4
-revision=1
+revision=2
 wrksrc="${pkgname}-${pkgname}-${version}"
 build_style=gnu-configure
 # chroot-texinfo is not able to build frr's docs
@@ -9,7 +9,7 @@ configure_args="--disable-doc
  --localstatedir=/run/frr --sysconfdir=/etc/frr
  --enable-exampledir=/usr/share/examples/frr
  --enable-user=_frr --enable-group=_frr --enable-vty-group=_frrvty"
-make_build_args="SPHINXBUILD=sphinx-build3"
+make_build_args="SPHINXBUILD=sphinx-build"
 conf_files="/etc/frr/*.conf"
 make_dirs="/var/log/frr 0700 _frr _frr"
 hostmakedepends="pkg-config flex bison autoconf automake libtool
@@ -40,6 +40,11 @@ if [ "$CROSS_BUILD" ]; then
 else
 	subpackages+=" frr-devel"
 fi
+
+post_patch() {
+	# Typo in configure macro
+	vsed -i m4/ax_python.m4 -e 's/"{py_ver}"/"${py_ver}"/g'
+}
 
 pre_configure() {
 	autoreconf -fi

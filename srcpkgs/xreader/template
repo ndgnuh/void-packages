@@ -1,6 +1,6 @@
 # Template file for 'xreader'
 pkgname=xreader
-version=2.6.1
+version=2.8.3
 revision=1
 build_style=meson
 build_helper="gir"
@@ -15,10 +15,16 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/linuxmint/xreader"
 distfiles="https://github.com/linuxmint/xreader/archive/${version}.tar.gz"
-checksum=39ce590b8dd21b67a6971eacf2711000423ff1b062387af0ed86043bab4369e0
+checksum=48d624e3844d614ea5c6a4c97220e31411800dee8a55f394add0871b0573b3cb
 
 build_options="gir"
 build_options_default="gir"
+
+do_check() {
+	# XX dogtail is needed for testing (not in repo)
+	# XX tests need xorg running
+	:
+}
 
 libxreader_package() {
 	short_desc+=" - shared library"

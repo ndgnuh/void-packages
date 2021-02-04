@@ -1,6 +1,6 @@
 # Template file for 'python3-elementpath'
 pkgname=python3-elementpath
-version=2.0.2
+version=2.1.1
 revision=1
 wrksrc=elementpath-${version}
 build_style=python3-module
@@ -12,7 +12,7 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="MIT"
 homepage="https://github.com/sissaschool/elementpath"
 distfiles="${PYPI_SITE}/e/elementpath/elementpath-${version}.tar.gz"
-checksum=8ea6aefe90a3d7f968921789210cdfc1f6740b305dc5d7f70b1151c73d673d29
+checksum=7ac47a1a0da75ccde8a7427954a05a8d8d341a6032c8e272c4d471babcc63e02
 
 post_patch() {
 	# locale handling in musl is NOT that ideal,

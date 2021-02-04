@@ -1,6 +1,6 @@
 # Template file for 'go-jira'
 pkgname=go-jira
-version=1.0.23
+version=1.0.27
 revision=1
 wrksrc="jira-${version}"
 build_style=go
@@ -12,4 +12,4 @@ maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="Apache-2.0"
 homepage="https://$go_import_path"
 distfiles="$homepage/archive/v$version.tar.gz"
-checksum=01c86d3119d050774caa41b89fb4f038026542eb1e362e89f3f89bf330b68354
+checksum=c5bcf7b61300b67a8f4e42ab60e462204130c352050e8551b1c23ab2ecafefc7

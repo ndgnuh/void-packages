@@ -1,13 +1,12 @@
 # Template file for 'font-spleen'
 pkgname=font-spleen
 version=1.8.2
-revision=1
-archs=noarch
+revision=2
 wrksrc="spleen-${version}"
 build_style=gnu-makefile
 make_cmd=bmake
 make_build_target="pcf psf"
-hostmakedepends="bmake bdftopcf bdf2psf gzip"
+hostmakedepends="bmake bdftopcf bdf2psf"
 depends="font-util"
 short_desc="Monospaced bitmap fonts"
 maintainer="Renato Aguiar <renato@renatoaguiar.net>"
@@ -23,6 +22,11 @@ do_configure() {
 
 post_build() {
 	gzip -n9 *.pcf *.psfu
+}
+
+do_check() {
+	# bmake: don't know how to make check. Stop
+	:
 }
 
 do_install() {

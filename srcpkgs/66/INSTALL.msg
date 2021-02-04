@@ -1,3 +1,4 @@
-CAUTION: upgrading 66 to a new major version requires MANUAL INTERVENTION!
-You may need to run the `66-update` utility or otherwise udpate your trees.
-For details, refer to https://framagit.org/Obarun/66/raw/master/NEWS.md
+CAUTION: 66 v0.6.0.0 has changes to the way the log and env options
+are handled in the frontend service file. Please consult the 
+documentation and make the appropriate changes before restarting
+or enabling your services, especially complex module services.

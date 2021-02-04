@@ -5,19 +5,19 @@
 #
 #   https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=269769
 
-_githash="1e6f676b6946c01b9c3f217426e83e0761d34b9f"
+_githash="76c49e60e742d0bebd798be972d67dd3fd007691"
 _gitshort="${_githash:0:7}"
 
 pkgname=rpi-kernel
-version=5.4.59
+version=5.4.83
 revision=1
 wrksrc="linux-${_githash}"
-maintainer="Peter Bui <pbui@github.bx612.space>"
+maintainer="Piraty <piraty1@inbox.ru>"
 homepage="http://www.kernel.org"
 license="GPL-2.0-only"
 short_desc="The Linux kernel for Raspberry Pi (${version%.*} series [git ${_gitshort}])"
 distfiles="https://github.com/raspberrypi/linux/archive/${_githash}.tar.gz"
-checksum=195d7326c033747558061265f6f32b61dfadb45d9cea210a7fd745773e16ed6b
+checksum=4a98ea0d68c6e74d479789c12fc97619c872cb2607ae87a881a9491c1c3fbc35
 python_version=2
 
 _kernver="${version}_${revision}"
@@ -95,7 +95,7 @@ do_configure() {
 
 	# LXD 4.2+ support
 	echo "CONFIG_BRIDGE_VLAN_FILTERING=y" >> "$defconfig"
-	
+
 	make ${makejobs} ${_cross} ARCH=${_arch} ${target}
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
@@ -128,10 +128,10 @@ do_install() {
 	# Install device tree blobs
 	make ${makejobs} ARCH=${_arch} INSTALL_DTBS_PATH=${DESTDIR}/boot dtbs_install
 
-	#move rpi3's dtb that ended up in /boot/broadcom
+	# move dtb that ended up in /boot/broadcom
 	case "$XBPS_TARGET_MACHINE" in
 	aarch64*)
-		mv ${DESTDIR}/boot/broadcom/bcm2710-rpi-3-b.dtb ${DESTDIR}/boot
+		mv ${DESTDIR}/boot/broadcom/bcm{2710,2837}-*.dtb ${DESTDIR}/boot
 		;;
 	esac
 
@@ -199,6 +199,9 @@ do_install() {
 	cp -a security/selinux/include ${hdrdest}/security/selinux
 	mkdir -p ${hdrdest}/tools/include
 	cp -a tools/include/tools ${hdrdest}/tools/include
+	if [ -d "arch/${_arch}/tools" ]; then
+		cp -a arch/${_arch}/tools ${hdrdest}/arch/${_arch}
+	fi
 
 	# copy arch includes for external modules
 	mkdir -p ${hdrdest}/arch/${_arch}
