@@ -1,0 +1,33 @@
+diff --git a/config.def.h b/config.def.h
+index 6f05dce..986aa64 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,8 +5,8 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+-static int borderpx = 2;
++static char *font = "monospace:pixelsize=24:antialias=true:autohint=true";
++static int borderpx = 22;
+ 
+ /*
+  * What program is execed by st depends of these precedence rules:
+@@ -19,7 +19,7 @@ static int borderpx = 2;
+ static char *shell = "/bin/sh";
+ char *utmp = NULL;
+ /* scroll program: to enable use a string like "scroll" */
+-char *scroll = NULL;
++char *scroll = "scroll";
+ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+ 
+ /* identification sequence returned in DA and DECID */
+@@ -91,7 +91,7 @@ char *termname = "st-256color";
+  *
+  *	stty tabs
+  */
+-unsigned int tabspaces = 8;
++unsigned int tabspaces = 4;
+ 
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
