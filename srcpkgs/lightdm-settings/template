@@ -1,0 +1,17 @@
+# Template file for 'lightdm-settings'
+pkgname=lightdm-settings
+version=1.5.2
+revision=1
+build_style=gnu-makefile
+makedepends="gettext desktop-file-utils"
+depends="lightdm-slick-greeter python-gobject python3-setproctitle python3-xapp polkit-devel"
+short_desc="A configuration tool for the LightDM display manager"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/linuxmint/${pkgname}"
+distfiles="${homepage}/archive/${version}.tar.gz"
+checksum="2c5c2574b04b243f143397b0ffdc4d375f5414ad87cb3371fc142bc89af36606"
+
+do_install() {
+	cp usr -r ${PKGDESTDIR}/
+}
