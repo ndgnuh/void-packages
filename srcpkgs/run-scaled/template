@@ -1,0 +1,23 @@
+# Template file for 'run-scaled'
+pkgname=run-scaled
+version=1.0.git
+revision=1
+build_style="fetch"
+hostmakedepends="git"
+depends="xorg-server-xvfb xpra xrandr"
+short_desc="Run an X application scaled via xpra"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="BSD-3-Clause"
+homepage="https://github.com/kaueraal/run_scaled.git"
+
+do_fetch() {
+	git clone https://github.com/kaueraal/run_scaled.git $wrksrc
+}
+
+do_install() {
+	mkdir -p ${PKGDESTDIR}/usr/share/run-scaled
+	mkdir -p ${PKGDESTDIR}/usr/bin
+
+	cp ${wrksrc}/LICENSE ${PKGDESTDIR}/usr/share/run-scaled/
+	cp ${wrksrc}/run_scaled ${PKGDESTDIR}/usr/bin/
+}
