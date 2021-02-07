@@ -1,0 +1,21 @@
+# Template file for 'lightdm-slick-greeter'
+pkgname=lightdm-slick-greeter
+version=1.5.2
+revision=1
+wrksrc="slick-greeter-${version}"
+build_style=gnu-configure
+hostmakedepends="intltool pkg-config automake vala-devel glib-devel"
+makedepends="cairo-devel freetype-devel libcanberra-devel gettext-devel lightdm-devel libxklavier-devel vala at-spi2-core gtk+3-devel"
+depends="pixman cairo freetype lightdm liblightdm-gobject gtk+3 libXext"
+short_desc="A slick-looking LightDM greeter"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0"
+homepage="https://github.com/linuxmint/slick-greeter"
+distfiles="https://github.com/linuxmint/slick-greeter/archive/${version}.tar.gz"
+checksum=4462d82d79b483e5f2cb3ef52078b2d60056f2db5e7806b0e3fd44d2685e23b2
+
+pre_configure() {
+	aclocal --install
+	autoreconf -vfi
+	intltoolize -f
+}
