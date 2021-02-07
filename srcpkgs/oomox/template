@@ -1,0 +1,49 @@
+# Template file for 'oomox'
+pkgname=oomox
+version=1.13.3
+revision=1
+build_style=gnu-makefile
+hostmakedepends="git"
+makedepends="python3-gobject-devel gtk+3-devel gdk-pixbuf-devel gettext"
+depends=" python3-gobject gtk+3 gdk-pixbuf xrdb sassc librsvg glib coreutils bc coreutils"
+short_desc="Graphical application for generating different color variations of GTK themes"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0"
+homepage="https://github.com/themix-project/oomox"
+# distfiles="https://github.com/themix-project/oomox/archive/${version}.tar.gz"
+# checksum=e92d6d3a58e35e60d4e618d961cd63be5d8a3b2373eddadb1f7be36d08205c90
+
+build_options="materia arc gnomeicons papirus spotify imagecolor base16"
+build_options_default="$build_options"
+
+if [ $build_option_materia ]; then
+	depends+=" parallel"
+fi
+
+if [ $build_option_materia ] || [ $build_option_arc ]; then
+	depends+=" optipng gtk-engine-murrine resvg"
+fi
+
+if [ $build_option_gnomeicons ]; then
+	depends+=" ImageMagick"
+fi
+
+if [ $build_option_papirus ] || [ $build_option_gnomeicons ]; then
+	depends+=" breeze-icons"
+fi
+
+if [ $build_option_imagecolor ]; then
+	depends+=" python3-Pillow"
+fi
+
+if [ $build_option_base16 ]; then
+	depends+=" python3-pystache python3-yaml"
+fi
+
+if [ $build_option_spotify ]; then
+	depends+=" polkit zip"
+fi
+
+do_fetch() {
+	git clone --depth 1 --branch ${version} --recursive https://github.com/themix-project/oomox.git $wrksrc
+}
