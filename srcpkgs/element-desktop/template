@@ -1,6 +1,6 @@
 # Template file for 'element-desktop'
 pkgname=element-desktop
-version=1.7.19
+version=1.7.22
 revision=1
 wrksrc="element-web-${version}"
 conf_files="/etc/${pkgname}/config.json"
@@ -18,8 +18,8 @@ _ghpage="https://github.com/vector-im"
 _archive="archive/v${version}.tar.gz"
 distfiles="${_ghpage}/element-desktop/${_archive}>element-desktop.tar.gz
  ${_ghpage}/element-web/${_archive}>element-web.tar.gz"
-checksum="ab2543cf87614d82f3d070249c9890ac57b02a5ae1d7ed8140fcc56d1c1f8bd6
- f2817b02b80106b8fee307cc7f0ecff1c735111407acd4fb92363a8457d5ea80"
+checksum="890e4028721101d9a3ea4f2fbe892230e0fd2e2995dcc3e0cc560565aec783e1
+ d8119916d7a1cc20541f3f236ee19f2117049d328c286c54ac58fbd0fd72db1a"
 
 export USE_SYSTEM_APP_BUILDER=true
 
