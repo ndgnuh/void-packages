@@ -1,0 +1,43 @@
+# Template file for 'eww'
+pkgname=eww
+version=0.git
+revision=1
+#archs="i686 x86_64"
+#wrksrc=
+#create_wrksrc=yes
+#build_style=cargo
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="rustup pkg-config git"
+makedepends="gtk+3-devel libglib-devel"
+depends="gtk+3"
+short_desc="ElKowar's wacky widgets"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/elkowar/eww"
+
+do_fetch () {
+	git clone --depth 1 https://github.com/elkowar/eww "$wrksrc"
+	cd "$wrksrc"
+	pkgver="0.0.0.$(git rev-parse HEAD | cut -c1-7)"
+	cd -
+}
+
+pre_build () {
+	rustup-init -y --default-toolchain nightly
+	source $HOME/.cargo/env
+}
+
+do_build () {
+	cargo build --release
+}
+
+do_install () {
+	chmod 755 target/release/eww
+	mkdir $PKGDESTDIR/usr/bin
+	mv target/release/eww $PKGDESTDIR/usr/bin/
+	vlicense LICENSE
+}
