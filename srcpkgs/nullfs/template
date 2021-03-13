@@ -1,0 +1,24 @@
+# Template file for 'nullfs'
+pkgname=nullfs
+version=0git
+revision=1
+hostmakedepends="git"
+makedepends="fuse-devel"
+depends="fuse"
+short_desc="FUSE nullfs drivers"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="unlicensed"
+homepage="https://github.com/xrgtn/nullfs"
+
+do_fetch () {
+	git clone https://github.com/xrgtn/nullfs.git $wrksrc
+}
+
+do_build () {
+	make
+}
+
+do_install () {
+	mkdir -p $PKGDESTDIR/usr/bin
+	cp nul1fs nullfs nulnfs $PKGDESTDIR/usr/bin
+}
