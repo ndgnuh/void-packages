@@ -1,0 +1,22 @@
+# Template file for 'kvantum-nordic-solid'
+pkgname=kvantum-nordic-solid
+version=1.9.0
+revision=1
+wrksrc="Nordic-$version"
+depends="kvantum"
+short_desc="Dark theme created using the awesome Nord color pallete"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/EliverLara/Nordic"
+distfiles="$homepage/archive/v1.9.0.tar.gz"
+checksum="2621b908351d245306bfa1956067d666eb08c00082f69468888162ddb9b1ba45"
+
+do_build () {
+	echo "Done"
+}
+
+do_install () {
+	mkdir $PKGDESTDIR/usr/share/Kvantum -p
+	cp kde/kvantum/* $PKGDESTDIR/usr/share/Kvantum -r
+	vlicense LICENSE
+}
