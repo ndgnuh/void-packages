@@ -1,0 +1,19 @@
+# Template file for 'Adapta-Nord'
+pkgname=Adapta-Nord
+version=202009251530
+revision=1
+short_desc="Adaptive Gtk+ theme. Nord color schemes"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Adapta-Projects/Adapta-Nord"
+distfiles="${homepage}/archive/202009251530.tar.gz"
+checksum=b3c534eaf06930ce495f4d21afa7bea8c440b917b78abcab08af076f7be34446
+
+do_build() {
+	echo "Done" > done
+}
+
+do_install() {
+	cp Pkg/usr -r $PKGDESTDIR/
+	vlicense LICENSE
+}
