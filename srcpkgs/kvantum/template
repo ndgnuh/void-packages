@@ -1,6 +1,6 @@
 # Template file for 'kvantum'
 pkgname=kvantum
-version=0.15.3
+version=0.18.0
 revision=1
 wrksrc="Kvantum-${version}"
 build_wrksrc=Kvantum
@@ -13,13 +13,8 @@ maintainer="Giuseppe Fierro <gspe@ae-design.ws>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/tsujan/Kvantum"
 distfiles="https://github.com/tsujan/Kvantum/archive/V${version}.tar.gz"
-checksum=a34b54956d772c19d98b1ef62d9bc3b9c20fa0aa7602c1d508332500e805cec0
+checksum=79752525b5636009385864373618e5e747a9fa7047af46d7815e27934c9a3dfd
 nocross="https://build.voidlinux.org/builders/aarch64-musl_builder/builds/21436/steps/shell_3/logs/stdio"
-
-if [ "$CROSS_BUILD" ]; then
-	hostmakedepends+=" qt5-host-tools qt5-devel qt5-svg-devel qt5-x11extras-devel
-	 kwindowsystem-devel"
-fi
 
 post_install() {
 	vdoc doc/Theme-Config.pdf

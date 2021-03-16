@@ -1,11 +1,10 @@
 # Template file for 'unicode-emoji'
 pkgname=unicode-emoji
 version=12.1
-revision=1
-archs=noarch
+revision=2
 create_wrksrc=yes
 short_desc="Unicode Emoji Data Files"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="Unicode-DFS-2016"
 homepage="https://www.unicode.org/emoji/"
 distfiles="https://www.unicode.org/Public/emoji/$version/emoji-data.txt

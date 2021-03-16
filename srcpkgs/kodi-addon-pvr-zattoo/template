@@ -1,17 +1,19 @@
 # Template file for 'kodi-addon-pvr-zattoo'
 pkgname=kodi-addon-pvr-zattoo
-version=18.0.63
+version=19.7.8.1
 revision=1
-_kodi_release=Leia
+_kodi_release=Matrix
 wrksrc="pvr.zattoo-${version}-${_kodi_release}"
 build_style=cmake
 hostmakedepends="pkg-config"
 makedepends="kodi-devel kodi-platform-devel p8-platform-devel rapidjson
  tinyxml2-devel tinyxml-devel"
+depends="kodi-addon-inputstream-adaptive"
 short_desc="Kodi PVR addon for streaming live TV from zattoo"
-maintainer="Helmut Pozimski <helmut@pozimski.eu>"
+maintainer="teldra <teldra@rotce.de>"
 license="GPL-2.0-only"
 homepage="https://github.com/rbuehlma/pvr.zattoo"
 distfiles="https://github.com/rbuehlma/pvr.zattoo/archive/${version}-${_kodi_release}.tar.gz"
-checksum=d4a9e720238bf58b439b20320813e51613f48a65aa0b04ccd98066475e60acf3
+checksum=25dc4ea72b5315a65286ba606e6e26d281fb8eb830d5e0164b66b8d7ae90319a
 nocross="depends on kodi-platform"
+make_check=no # No target to "make test"

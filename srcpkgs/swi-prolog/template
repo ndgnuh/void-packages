@@ -1,14 +1,14 @@
 # Template file for 'swi-prolog'
 pkgname=swi-prolog
-version=8.2.0
-revision=1
+version=8.2.4
+revision=2
 wrksrc="swipl-${version}"
 build_style=cmake
 build_helper="qemu"
 configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="pkg-config"
 makedepends="gmp-devel libXft-devel libXinerama-devel libXpm-devel libXt-devel
- libarchive-devel libjpeg-turbo-devel libressl-devel readline-devel
+ libarchive-devel libjpeg-turbo-devel openssl-devel readline-devel
  unixodbc-devel zlib-devel pcre-devel libyaml-devel"
 short_desc="Comprehensive free Prolog environment"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
@@ -16,7 +16,7 @@ license="LGPL-2.1-or-later"
 homepage="http://www.swi-prolog.org/"
 changelog="http://www.swi-prolog.org/ChangeLog?branch=stable"
 distfiles="http://www.swi-prolog.org/download/stable/src/swipl-${version}.tar.gz"
-checksum=d8c9f3adb9cd997a5fed7b5f5dbfe971d2defda969b9066ada158e4202c09c3c
+checksum=f4bcc78437f9080ab089762e9e6afa7071df7f584c14999b92b9a90a4efbd7d8
 
 if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
 	makedepends+=" libatomic-devel"

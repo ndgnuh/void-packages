@@ -1,14 +1,14 @@
 # Template file for 'coq'
 pkgname=coq
-version=8.11.2
+version=8.13.1
 revision=1
-hostmakedepends="ocaml ocaml-findlib ocaml-num camlp5"
+hostmakedepends="camlp5 ocaml ocaml-findlib ocaml-num ocaml-zarith"
 short_desc="Proof assistant written in OCaml"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="LGPL-2.1-only"
 homepage="https://coq.inria.fr"
 distfiles="https://github.com/coq/coq/archive/V${version}.tar.gz"
-checksum=98cb9e12ba2508a1ca59e0c638fce27bf95c37082b6f7ce355779b80b25e1bfd
+checksum=95e71b16e6f3592e53d8bb679f051b062afbd12069a4105ffc9ee50e421d4685
 nopie=yes
 nocross=yes
 
@@ -22,7 +22,7 @@ do_configure() {
 }
 
 do_build() {
-	make PR_O=
+	make
 }
 
 do_install() {

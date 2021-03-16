@@ -1,12 +1,13 @@
 # Template file for 'mesa-demos'
 pkgname=mesa-demos
 version=8.4.0
-revision=1
+revision=3
 build_style=gnu-configure
+configure_args="--with-system-data-files"
 hostmakedepends="pkg-config"
 makedepends="libXext-devel MesaLib-devel glu-devel glew-devel freetype-devel libfreeglut-devel"
 short_desc="Mesa 3D demos and tools"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="MIT"
 homepage="https://www.mesa3d.org"
 distfiles="https://mesa.freedesktop.org/archive/demos/mesa-demos-${version}.tar.bz2"

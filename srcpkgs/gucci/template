@@ -1,6 +1,6 @@
 # Template file for 'gucci'
 pkgname=gucci
-version=1.2.2
+version=1.2.4
 revision=1
 build_style=go
 go_import_path="github.com/noqcks/gucci"
@@ -10,8 +10,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://github.com/noqcks/gucci"
 distfiles="https://github.com/noqcks/gucci/archive/${version}.tar.gz"
-checksum=b31ebdb94d227331ac954262e43e39e3b9a1fb25bab96fd0cccb7ddfb997e383
-broken="cli.StringFlag does not implement cli.Flag (Apply method has pointer receiver)"
+checksum=50d9d513fff97128bbd92685af5b244cbc1453e79010fb2b1aea51c84d478855
 
 post_install() {
 	vlicense LICENSE

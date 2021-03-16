@@ -1,6 +1,6 @@
 # Template file for 'chafa'
 pkgname=chafa
-version=1.2.1
+version=1.6.0
 revision=2
 build_style=gnu-configure
 hostmakedepends="pkg-config"
@@ -10,7 +10,7 @@ maintainer="Christian Buschau <christian.buschau@mailbox.org>"
 license="LGPL-3.0-or-later"
 homepage="https://hpjansson.org/chafa/"
 distfiles="https://hpjansson.org/chafa/releases/chafa-${version}.tar.xz"
-checksum=3f37a28bfb9ab716efb32d2652bc2c17856711ed7808e74481c8afcf7cdb44c2
+checksum=0706e101a6e0e806335aeb57445e2f6beffe0be29a761f561979e81691c2c681
 
 case "$XBPS_TARGET_MACHINE" in
 	x86_64*|i686*) ;;

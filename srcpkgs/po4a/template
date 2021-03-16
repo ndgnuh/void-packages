@@ -1,11 +1,10 @@
 # Template file for 'po4a'
 pkgname=po4a
-version=0.59.1
+version=0.63
 revision=1
-archs=noarch
 build_style=perl-ModuleBuild
 _perldeps="perl perl-Text-WrapI18N perl-Term-ReadKey perl-Unicode-LineBreak
- perl-SGMLSpm perl-YAML-Tiny"
+ perl-SGMLSpm perl-YAML-Tiny perl-Pod-Parser"
 hostmakedepends="${_perldeps} perl-Locale-gettext perl-Module-Build gettext
  libxslt docbook-xsl"
 makedepends="${_perldeps} perl-Locale-gettext perl-Module-Build"
@@ -15,4 +14,4 @@ maintainer="newbluemoon <blaumolch@mailbox.org>"
 license="GPL-2.0-or-later"
 homepage="https://po4a.org/"
 distfiles="https://github.com/mquinson/po4a/archive/v${version}.tar.gz"
-checksum=bd894c728fcf3f9bb2d563fc9e86328f592be69d476c78c1a9cae8a25f45d145
+checksum=534a050af6e8d8d2acd5dd32b66c9a15f64106f022efef72cd82c175de34e595

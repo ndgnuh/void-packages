@@ -1,19 +1,19 @@
 # Template file for 'opensc'
 pkgname=opensc
-version=0.19.0
-revision=5
+version=0.21.0
+revision=2
 wrksrc="OpenSC-${version}"
 build_style=gnu-configure
 configure_args="--enable-man  --enable-sm --enable-static=no --enable-doc
  --with-xsl-stylesheetsdir=/usr/share/xsl/docbook"
 hostmakedepends="automake docbook-xsl libtool libxslt pkg-config"
-makedepends="libressl-devel pcsclite-devel readline-devel zlib-devel"
+makedepends="openssl-devel pcsclite-devel readline-devel zlib-devel"
 short_desc="Tools and libraries for smart cards"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://github.com/OpenSC/OpenSC/wiki"
 distfiles="https://github.com/OpenSC/OpenSC/archive/${version}.tar.gz"
-checksum=c0b803ba36aac9b5fef7f249adb9dffaf3f298db85304531b6a0574519743cf2
+checksum=d4ee136d1b3a764868433da01857da7347de240e0c82545faa8659c2384ee43d
 conf_files="/etc/opensc.conf"
 CFLAGS="-Wno-error=format-overflow"
 

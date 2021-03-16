@@ -1,18 +1,17 @@
 # Template file for 'pinebookpro-kernel'
 pkgname=pinebookpro-kernel
-version=5.6.0
+version=5.10.23
 revision=1
-_commit=93293259039d6fc3a725961d42b4f11bfc3f5127
-wrksrc="linux-pinebook-pro-${_commit}"
-short_desc="Linux kernel for Pinebook Pro (${version%.*} series)"
+archs="aarch64*"
+wrksrc="linux-${version}"
+short_desc="Linux kernel for Pinebook Pro"
 maintainer="Renato Aguiar <renato@renatoaguiar.net>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
-distfiles="https://gitlab.manjaro.org/tsys/linux-pinebook-pro/-/archive/${_commit}/linux-pinebook-pro-${_commit}.tar.gz"
-checksum=61f59cd28fa560f939917f1c1315fecce0db4b1bf0a5b64296cd9aaee9f0adb1
+distfiles="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${version}.tar.xz"
+checksum=f6e21c03ec6ff85b26d77c59fdab81e64707792a57593643307df192749edb6a
 patch_args="-Np1"
-
-archs="aarch64*"
+python_version=3
 
 nodebug=yes  # -dbg package is generated below manually
 nostrip=yes
@@ -21,7 +20,7 @@ noshlibprovides=yes
 preserve=yes
 
 hostmakedepends="tar xz bc elfutils-devel flex gmp-devel kmod libmpc-devel
- libressl-devel perl uboot-mkimage cpio"
+ openssl-devel perl uboot-mkimage cpio python3"
 
 _kernver="${version}_${revision}"
 triggers="kernel-hooks"
@@ -51,7 +50,9 @@ do_configure() {
 		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
 	fi
 
-	make ${makejobs} ARCH=$arch ${_args} pinebook_pro_defconfig
+	cp -f ${FILESDIR}/dotconfig .config
+	make ${makejobs} ARCH=$arch ${_args} oldconfig
+
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
 	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_${revision}\"|" .config
 }

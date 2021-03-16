@@ -1,17 +1,17 @@
 # Template file for 'kwindowsystem'
 pkgname=kwindowsystem
-version=5.70.0
+version=5.80.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="kcoreaddons pkg-config extra-cmake-modules qt5-host-tools qt5-tools-devel"
 makedepends="qt5-tools-devel qt5-x11extras-devel libXfixes-devel xcb-util-keysyms-devel"
 short_desc="KDE frameworks - Access to the windowing system"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
-homepage="https://projects.kde.org/projects/frameworks/kwindowsystem"
+homepage="https://invent.kde.org/frameworks/kwindowsystem"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=9003fded6cb8338521024bdcfccc4d36336f3f9cc9a4e6ba4eaa50bd8064c828
+checksum=b352b67752d17d67a4eb120c224b5b165af3b09f9ac5e1224909d278042704b2
 
 kwindowsystem-devel_package() {
 	short_desc+=" - development"

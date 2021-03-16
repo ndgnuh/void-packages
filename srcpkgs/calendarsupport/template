@@ -1,17 +1,18 @@
 # Template file for 'calendarsupport'
 pkgname=calendarsupport
-version=20.04.1
+version=20.12.3
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules kconfig python3 qt5-host-tools qt5-qmake
  gettext kcoreaddons qt5-tools"
-makedepends="kholidays-devel akonadi-calendar-devel kdepim-apps-libs-devel"
+makedepends="kholidays-devel akonadi-calendar-devel akonadi-notes-devel
+ pimcommon-devel"
 short_desc="Calendar support library"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/calendarsupport-${version}.tar.xz"
-checksum=7e77c354a1bc634cf31f728315ea7f0b85bd112d7dfd49786701118e8f8663fb
+checksum=ab418fb8ed8a9aee1d0798fe934e59593b6b985c85220405814f159c954a8d10
 
 calendarsupport-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} ${makedepends}"

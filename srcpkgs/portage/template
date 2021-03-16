@@ -1,18 +1,19 @@
 # Template file for 'portage'
 pkgname=portage
-version=2.3.100
+version=3.0.17
 revision=1
 wrksrc="${pkgname}-${pkgname}-${version}"
 build_style=python3-module
 make_install_args="--sbindir=/usr/bin"
 hostmakedepends="python3"
-depends="python3 rsync xmlto eselect"
+depends="python3 rsync xmlto eselect tar zstd"
+checkdepends="tar zstd"
 short_desc="Gentoo's package management system"
 maintainer="teldra <teldra@rotce.de>"
 license="GPL-2.0-only"
 homepage="https://wiki.gentoo.org/wiki/Portage"
 distfiles="https://github.com/gentoo/${pkgname}/archive/${pkgname}-${version}.tar.gz"
-checksum=f55cee9b15da0147428974b9f9a2bcd1707649fcfff6ee2a185883a3753b118e
+checksum=96cf79d8d28cf66214871ae9cacb8246d60b443a1eb42c7ae40876f43ae6803e
 
 conf_files="
 	/etc/dispatch-conf.conf

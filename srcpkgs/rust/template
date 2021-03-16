@@ -3,120 +3,165 @@
 #
 # Permission to use rust and cargo trademark is granted.
 # See: https://github.com/rust-lang/core-team/issues/4
-pkgname=rust
-version=1.43.1
-revision=1
-_rust_dist_version=1.43.1
-_cargo_dist_version=0.44.0
+#
 # Always make sure custom distfiles used for bootstrap are
 # uploaded to https://alpha.de.repo.voidlinux.org/distfiles/
+#
+pkgname=rust
+version=1.48.0
+revision=1
+_rust_dist_version=1.48.0
 wrksrc="rustc-${version}-src"
 hostmakedepends="cmake curl pkg-config python3 tar"
-makedepends="libffi-devel ncurses-devel libxml2-devel zlib-devel llvm10"
+makedepends="libffi-devel ncurses-devel libxml2-devel zlib-devel llvm11"
 depends="rust-std"
 short_desc="Safe, concurrent, practical systems language"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="MIT, Apache-2.0"
 homepage="https://www.rust-lang.org/"
 distfiles="https://static.rust-lang.org/dist/rustc-${version}-src.tar.gz"
-checksum=cde177b4a8c687da96f20de27630a1eb55c9d146a15e4c900d5c31cd3c3ac41d
+checksum="0e763e6db47d5d6f91583284d2f989eacc49b84794d1443355b85c58d67ae43b"
 lib32disabled=yes
 patch_args="-Np1"
 
 build_options="bindist"
 desc_option_bindist="Generate tarballs for bootstrap"
 
+# rust upstream no longer ships cargo-versioned tarballs
+# need to use the corresponding rust version instead
+_bootstrap_url="https://static.rust-lang.org/dist"
+_cargo_dist_version="${_rust_dist_version}"
+
+# 32-bit gnu ppc needs custom bootstrap because of patches
+case "$XBPS_MACHINE" in
+	x86_64*|i686|ppc64le) ;;
+	ppc*)
+		# custom bootstrap tarballs still use cargo versioning, so override
+		_bootstrap_url="https://alpha.de.repo.voidlinux.org/distfiles"
+		_cargo_dist_version="0.49.0"
+		;;
+esac
+
+# always use external binary cargo; this allows us to break
+# the cargo<->rust cycle that appears when cross-compiling
+distfiles+=" ${_bootstrap_url}/cargo-${_cargo_dist_version}-${RUST_BUILD}.tar.xz"
+
+case "$XBPS_MACHINE" in
+	i686)
+		checksum+="
+		 1eab76df91e87198632605752d0dd66f3d84b502cbd1f982f6db3d0d8d943cdb"
+		;;
+	x86_64)
+		checksum+="
+		 b11d595581e2580c069b5039214e1031a0e4f87ff6490ac39f92f77857e37055"
+		;;
+	x86_64-musl)
+		checksum+="
+		 8728cb7515e593f6fcf3c7afba826a92cd227a35b8e936bae892b95482d4fb90"
+		;;
+	ppc64le)
+		checksum+="
+		 675321cf812a132ce707261d03aab2f5ff64788ae66b45d03bc281514f5d53ec"
+		;;
+	ppc64le-musl)
+		checksum+="
+		 cf02e057f04e40458b63326e443c48924c78fc33dcb6b892643d47feb1496b09"
+		;;
+	ppc64)
+		checksum+="
+		 1e7612ea1900b76924429fa04fa2c194f4213167933b481001290dd4fef27939"
+		;;
+	ppc64-musl)
+		checksum+="
+		 88ffadd53e79055ba266f1303d502bcf1ef863783b121aa017930cadcd0e398d"
+		;;
+	ppc)
+		checksum+="
+		 cacacdec7bfd24345804efdd1bd1682084880c3c6a086bcab85cd1186b6cd230"
+		;;
+	ppc-musl)
+		checksum+="
+		 bad4a5d22da3c7548fd440d0d5a0b98e4de9894dedb35bfb58aaa5f141c23adb"
+		;;
+	*) broken="cargo bootstrap binary unavailable for ${XBPS_MACHINE}";;
+esac
+
 _bootstrap_dir="stage0-bootstrap"
 
+# as for the rust compiler, just depend on self when crosscompiling...
+# this is because if we do that, we can skip stage0 build and considerably
+# cut down the build time (the local-rebuild property is enabled for cross)
+
 if [ "$CROSS_BUILD" ]; then
-	hostmakedepends+=" cargo llvm10"
+	hostmakedepends+=" rust llvm11"
 	# These are required for building the buildhost's stage0/1
 	hostmakedepends+=" libffi-devel libxml2-devel ncurses-devel zlib-devel"
 else
-	_bootstrap_url="https://static.rust-lang.org/dist"
-
-	# 32-bit ppc needs custom bootstrap for now because of patches
-	case "$XBPS_MACHINE" in
-		x86_64*|i686|ppc64le) ;;
-		ppc*) _bootstrap_url="https://alpha.de.repo.voidlinux.org/distfiles" ;;
-		*) broken="unsupported host: ${XBPS_MACHINE}" ;;
-	esac
-
 	distfiles+="
 	 ${_bootstrap_url}/rustc-${_rust_dist_version}-${RUST_BUILD}.tar.xz
-	 ${_bootstrap_url}/rust-std-${_rust_dist_version}-${RUST_BUILD}.tar.xz
-	 ${_bootstrap_url}/cargo-${_cargo_dist_version}-${RUST_BUILD}.tar.xz"
+	 ${_bootstrap_url}/rust-std-${_rust_dist_version}-${RUST_BUILD}.tar.xz"
 
-	# checksums must be specified per arch
 	case "$XBPS_MACHINE" in
 		i686)
 			checksum+="
-			 b415a406443cafa85e426d56d02fb52231b8d78ad1fec33b79b757d8ef4ed64c
-			 9913d3e21efc13445e3b71f6e1103c63b130544e1f28a99a0bb642276ebca985
-			 c7b4045b2001be2e97b0b08dfaee02097aea0e8a9983b42585d733cfa1e69683"
+			 c241405350bf6f88224db7040012ce25351b332d6deffec07a9b5a958ab19a28
+			 d4ea5ca6f9c8f9092b50c879f1d9a2620486f08020fa4cac227743a19f6e8cdf"
 			;;
 		x86_64)
 			checksum+="
-			 a18b89572ff2e55eb9e0428efcdb60eacd82fe28c4d825d169b0ffc9e3c55ceb
-			 dabc62db53c2e7ffeba2824d4c52a938486b04c01a93ecba00c5d529868f6cfc
-			 84ba23058542691dae8157beec6a7679a420643eb6a708134bb1dfb01cbdebea"
+			 fc4d292a52cbb6b84fb9f065d0d7596064a9b957381d639d5a750d6e2bf02483
+			 1c00a6a0dabbf6290728b09f9307d9fa6cc985487f727075c68acd4a600ef3f8"
 			;;
 		x86_64-musl)
 			checksum+="
-			 be982dc01b5c86a3f2b0b99a2ca0e13b3cea698ee6f1db9fa024de5c8b35a75d
-			 f3b55147ff6e01448699eaf0875d7956ea38eeef42a19cda9d555e814470e823
-			 653cb60214d6f1000c9a7775111dccd093c0118e7f7bf5f2f1f53a7e5e2420b3"
+			 50c2904db7794400987487ea364392714830f287f3e596a9f8ea9df748dfa8a3
+			 4f485d8800f90898705686b873765a4c0fe909d1127d5b091a01979bc32f01c0"
 			;;
 		ppc64le)
 			checksum+="
-			 8fd21a9eac7e27a5f7af9d9357455d1ff5aef01d84b4025a773caaae6e0a6db7
-			 235bdaf836a0bd139257d6cc0566e0c3d4d1e07c04304ed9a8d200299aaa4a48
-			 4f90cd6cbcf9e9d6ba11830e093092e4e6c3d156ffde2e729933869b7a039ff9"
+			 bf06c20e09c66391c19de4319de64621c82787e5e44a40ec25fb565a4c6caf28
+			 e42b64c5710d3982f22ed744ea21ef2f0196df908c6a673b6df550904583b1c3"
 			;;
 		ppc64le-musl)
 			checksum+="
-			 2c32096c0f1b3a756cc29d6ecaf89296148a7a99d43baa0141bee490b353b502
-			 fa87695bdede026b031010716fafbe2890cbff00acc3042fd372dd7cc5eb46a7
-			 a85e8c9714a8bb7c17cd23993c677f51d9e0d6f5e85ab10f53ec1639b19bbbd4"
+			 f6967f8afe25f6beff65f2e139babc253de2c40edf556f615e380f50b4a31da8
+			 96311452bb46a855b7afe5883f619d4b768f14c7a5d5de01e15e146fb05d6d59"
 			;;
 		ppc64)
 			checksum+="
-			 4aa250cd14553ae3a438cd7a7290a79b899d1fbec9fc60985bbce070b500883e
-			 2cd6e88be42db44338c18fa6e3170ffea679ee73825826112cdbf6dd9ed0619a
-			 983e2fbec9c4bfe66bab37ad64cdd5b47918378e421d9bf639e938f120650199"
+			 13764a670b15480d1d850cc8ae3576536265e1fcac869c1a8fa72a8ebd059193
+			 5ce4b14e8895d995c24d3f8706ea9bb6a3ee153bd8d8cec8d808ad66e62162bc"
 			;;
 		ppc64-musl)
 			checksum+="
-			 f3c4fb775e63248914fece31199312dd2f69660f10b696ebbc56d41d4bc4ac2c
-			 c3d580c71e5a716056347513588d4445bdb8225e2ee5d9f2cf87c5bb4357bcb1
-			 f974893d1cac6c799345bece08c7f796eb50e1a77c4b9bc2a6451d161a57c660"
+			 6b2485c27be4a3d390e8dd4153381304ec3883eb0d9543835b29e0a471e9d4f0
+			 e5e513fe1e660856b4a7b133c99c23468bf781b93c69e7a098f600bcb91ce9bb"
 			;;
 		ppc)
 			checksum+="
-			 109d6af5d05cfbde5a476d07cf8b3093a974b0c76922bf8cd1046c5e11f5caaa
-			 a90152808c82f863f3c14647ebfbb6ae66d065ea4577be1036f6dc229c1e7e89
-			 48f4419300fe758ebe024e6449a5ca1dff07803047a815b3d3909170baa7adcc"
+			 4ea76c15c7225ab113c391fb7640786decf706e256fb9338e5b0c2763286777c
+			 5682d27ffc6f6c1655987e154f5425f9114516e22b7797c9e81bf038ffffad21"
 			;;
 		ppc-musl)
 			checksum+="
-			 3d5211d6c5cf241b3d3dba343c027d05ff04765e2dd4175168095a86e7c9de22
-			 04a5cdb4f18ccae3eb9059c84adf7a7778484e89c8404ba67cde814019ec5b57
-			 bbb93a757e75d09cb5f6d6dd837e32212acd8888426406352eccf52f329386f1"
+			 4147cae868df4e936409331ee9e2d81d47529d05a7a2e045d7f566e09eb4f302
+			 20132e5c67a67399e7945ba17d698a6aa1833f87b89bfc8a5a1678d75cfc637d"
 			;;
+		*) broken="rust bootstrap binaries unavailable for ${XBPS_MACHINE}";;
 	esac
 fi
 
 post_extract() {
+	mkdir -p "${wrksrc}/${_bootstrap_dir}/bin"
 	if [ -z "$CROSS_BUILD" ]; then
-		mkdir -p "${wrksrc}/${_bootstrap_dir}"
 		../rust-std-${_rust_dist_version}-${RUST_BUILD}/install.sh \
 		 --destdir="${wrksrc}/${_bootstrap_dir}" --prefix=/ --disable-ldconfig
 		../rustc-${_rust_dist_version}-${RUST_BUILD}/install.sh \
 		 --destdir="${wrksrc}/${_bootstrap_dir}" --prefix=/ --disable-ldconfig
-		# cargo may not be packaged like the rest
-		cp ../cargo-${_cargo_dist_version}-${RUST_BUILD}/cargo/bin/cargo \
-		 "${wrksrc}/${_bootstrap_dir}/bin"
 	fi
+	# cargo may not be packaged like the rest
+	cp ../cargo-${_cargo_dist_version}-${RUST_BUILD}/cargo/bin/cargo \
+	 "${wrksrc}/${_bootstrap_dir}/bin"
 }
 
 # we need this because cargo verifies checksums of all files in vendor
@@ -138,12 +183,10 @@ post_patch() {
 	# clear out all the checksum nonsense of patched vendor crates
 	_clear_vendor_checksums libc
 	_clear_vendor_checksums typenum
-	_clear_vendor_checksums backtrace-sys
-	_clear_vendor_checksums lzma-sys
 }
 
 do_configure() {
-	local _rust_root _local_rebuild _use_debug _use_debug_rustc _use_rpath
+	local _cargo_root _rust_root _local_rebuild _use_debug _use_debug_rustc _use_rpath _use_docs
 
 	if [ "$CROSS_BUILD" ]; then
 		_rust_root="/usr"
@@ -152,6 +195,8 @@ do_configure() {
 		_rust_root="${wrksrc}/${_bootstrap_dir}"
 		_local_rebuild="false"
 	fi
+
+	_cargo_root="${wrksrc}/${_bootstrap_dir}"
 
 	# disable rustc debug info as it bloats up rust-std significantly
 	# set to 1 or 2 if you wish to have debug info for rustc, it won't
@@ -170,8 +215,10 @@ do_configure() {
 	# packaging but is useful when building bootstrap binaries
 	if [ "$build_option_bindist" ]; then
 		_use_rpath="true"
+		_use_docs="false"
 	else
 		_use_rpath="false"
+		_use_docs="true"
 	fi
 
 	cat > config.toml <<- EOF
@@ -179,7 +226,7 @@ do_configure() {
 		build = "${RUST_BUILD}"
 		host = [ "${RUST_TARGET}" ]
 		target = [ "${RUST_TARGET}" ]
-		cargo = "${_rust_root}/bin/cargo"
+		cargo = "${_cargo_root}/bin/cargo"
 		rustc = "${_rust_root}/bin/rustc"
 		submodules = false
 		python = "python3"
@@ -188,7 +235,7 @@ do_configure() {
 		full-bootstrap = false
 		local-rebuild = ${_local_rebuild}
 		extended = false
-		docs = false
+		docs = ${_use_docs}
 		tools = []
 		[install]
 		prefix = "/usr"
@@ -264,10 +311,6 @@ do_check() {
 		src/test/run-fail/pretty \
 		src/test/run-make \
 		src/test/run-make-fulldeps \
-		src/test/run-pass \
-		src/test/run-pass/pretty \
-		src/test/run-pass-fulldeps \
-		src/test/run-pass-fulldeps/pretty \
 		src/test/ui \
 		src/test/ui-fulldeps
 }
@@ -288,7 +331,9 @@ do_install() {
 	tar xf build/dist/rust-std-${version}-${RUST_TARGET}.tar.gz \
 	 -C "$DESTDIR/usr/lib" --strip-components=3 --exclude=manifest.in
 	tar xf build/dist/rustc-dev-${version}-${RUST_TARGET}.tar.gz \
-         -C "$DESTDIR/usr/lib" --strip-components=3 --exclude=manifest.in
+	 -C "$DESTDIR/usr/lib" --strip-components=3 --exclude=manifest.in
+	tar xf build/dist/rust-docs-${version}-${RUST_TARGET}.tar.gz \
+	 -C "$DESTDIR/usr" --strip-components=2 --exclude=manifest.in
 
 	vlicense COPYRIGHT
 	vlicense LICENSE-APACHE
@@ -302,7 +347,6 @@ do_install() {
 
 rust-doc_package() {
 	short_desc+=" - documentation"
-	archs=noarch
 	pkg_install() {
 		vmove usr/share/doc
 	}

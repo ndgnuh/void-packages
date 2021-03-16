@@ -1,8 +1,7 @@
 # Template file for 'perl-LWP'
 pkgname=perl-LWP
-version=6.45
+version=6.53
 revision=1
-archs=noarch
 wrksrc="libwww-perl-${version}"
 build_style=perl-module
 hostmakedepends="
@@ -18,4 +17,4 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Artistic-1.0-Perl, GPL-1.0-or-later"
 homepage="https://metacpan.org/release/libwww-perl"
 distfiles="${CPAN_SITE}/LWP/libwww-perl-${version}.tar.gz"
-checksum=4391cec148d83c32482350c8ee1bc88f1b42d33921584b83017eba1591a42954
+checksum=9cbb7c688416a20c1aba9a32568504af1143ced58b572c502a1b2fb8a500f535

@@ -1,22 +1,24 @@
 # Template file for 'ucspi-ssl'
 pkgname=ucspi-ssl
 reverts="0.99e_3 0.99e_2 0.99e_1"
-version=0.11.4
-revision=1
+version=0.11.6a
+revision=3
 create_wrksrc=yes
 build_wrksrc="host/superscript.com/net/${pkgname}-${version}/src"
 build_style=gnu-makefile
-hostmakedepends="fehQlibs libressl-devel perl"
-makedepends="fehQlibs libressl-devel perl"
+hostmakedepends="fehQlibs openssl-devel perl"
+makedepends="fehQlibs openssl-devel perl"
 depends="ucspi-tcp6"
 short_desc="Command-line tools for building SSL client-server applications"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Public Domain"
 homepage="http://www.fehcom.de/ipnet/ucspi-ssl.html"
 distfiles="http://www.fehcom.de/ipnet/ucspi-ssl/ucspi-ssl-${version}.tgz"
-checksum=af008920a711cbe9ffbc1d17d790a7e00ba11a8df4aadace3ca43055b2b0d070
+checksum=e7fcd4ceec351a0f36b7d27188758709a6c095460ed4dce434e0c5d463c4c4ea
 # ad hoc build system breaks parallel build and cross-compilation
 disable_parallel_build="ad hoc build system breaks parallel build"
+
+CFLAGS="-fcommon"
 
 pre_build() {
 	case "$XBPS_TARGET_MACHINE" in
@@ -68,7 +70,7 @@ do_install() {
 
 ucspi-ssl-devel_package() {
 	short_desc+=" - development files"
-	depends="${sourcepkg}>=${version}_${revision} libressl-devel"
+	depends="${sourcepkg}>=${version}_${revision} openssl-devel"
 	pkg_install() {
 		vinstall ucspissl.a 0644 usr/lib
 		vinstall ucspissl.h 0644 usr/include

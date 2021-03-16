@@ -1,6 +1,6 @@
 # Template file for 'linux4.19'
 pkgname=linux4.19
-version=4.19.128
+version=4.19.180
 revision=1
 wrksrc="linux-${version}"
 short_desc="Linux kernel and modules (${version%.*} series)"
@@ -8,7 +8,7 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
 distfiles="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${version}.tar.xz"
-checksum=29aba6849c972c0079ddee4aaf476a500ef52d937c7ba02ceec4c7cf4753613c
+checksum=1da85d7c838ddd4858cdbf76a00fa0a99bf11584c5658d739b6b55b6a0b7bb5f
 python_version=2 #unverified
 patch_args="-Np1"
 
@@ -20,7 +20,7 @@ preserve=yes
 
 archs="i686* x86_64* arm* aarch64* ppc*"
 hostmakedepends="bc elfutils-devel flex gmp-devel kmod libmpc-devel
- libressl-devel perl uboot-mkimage tar xz"
+ openssl-devel perl uboot-mkimage tar xz"
 
 _kernver="${version}_${revision}"
 triggers="kernel-hooks"
@@ -38,6 +38,11 @@ mutable_files="
  /usr/lib/modules/${_kernver}/modules.alias
  /usr/lib/modules/${_kernver}/modules.alias.bin
  /usr/lib/modules/${_kernver}/modules.devname"
+
+# reproducible build
+export KBUILD_BUILD_TIMESTAMP=${SOURCE_DATE_EPOCH:-0}
+export KBUILD_BUILD_USER=voidlinux
+export KBUILD_BUILD_HOST=voidlinux
 
 do_configure() {
 	# 4.19 misses Documentation/DocBook. We ship the directory from 4.12 here.

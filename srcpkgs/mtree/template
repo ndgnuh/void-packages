@@ -1,11 +1,11 @@
 # Template file for 'mtree'
 pkgname=mtree
 version=1.0.4
-revision=5
+revision=7
 wrksrc="${pkgname}-port-${version}"
 build_style=gnu-configure
 hostmakedepends="automake"
-makedepends="libressl-devel"
+makedepends="openssl-devel"
 short_desc="Utility for creating and verifying file hierarchies"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="BSD-3-Clause"
@@ -14,7 +14,7 @@ distfiles="https://github.com/archiecobbs/mtree-port/archive/${version}.tar.gz"
 checksum=3d1b4e67414ebc178c869434d6bc4c5dd6e32e20db76e799ac16f9f7e585af93
 
 case "$XBPS_TARGET_MACHINE" in
-	*-musl) makedepends+=" musl-fts-devel"
+	*-musl) makedepends+=" musl-fts-devel musl-legacy-compat"
 	;;
 esac
 

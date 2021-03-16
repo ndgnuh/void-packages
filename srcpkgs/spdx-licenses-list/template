@@ -1,15 +1,16 @@
 # Template file for 'spdx-licenses-list'
+
+# common/travis/license.lst should be updated in sync with this package
 pkgname=spdx-licenses-list
-version=3.9
+version=3.12
 revision=1
-archs=noarch
 wrksrc="license-list-data-${version}"
 short_desc="SPDX License List"
 maintainer="mobinmob <mobinmob@disroot.org>"
 license="GPL-3.0-or-later"
 homepage="https://spdx.org"
 distfiles="https://github.com/spdx/license-list-data/archive/v${version}.tar.gz"
-checksum=759fad360a6c1b0c2cf8cd851b65cd1027848dbf4c8541a25f7cebb29182c290
+checksum=f80e9b6886b50b589040789938b260ab61eafe733d5d72f145a726ad82c569b8
 
 do_install() {
 	vmkdir usr/share/spdx
@@ -20,7 +21,6 @@ do_install() {
 }
 
 spdx-licenses-text_package() {
-	archs=noarch
 	short_desc="SPDX licenses in plain text"
 	pkg_install() {
 		vmkdir usr/share/spdx
@@ -29,7 +29,6 @@ spdx-licenses-text_package() {
 }
 
 spdx-licenses-json_package() {
-	archs=noarch
 	short_desc="SPDX licenses in JSON"
 	pkg_install() {
 		vmkdir usr/share/spdx
@@ -38,7 +37,6 @@ spdx-licenses-json_package() {
 }
 
 spdx-licenses-html_package() {
-	archs=noarch
 	short_desc="SPDX licenses in HTML"
 	pkg_install() {
 		vmkdir usr/share/spdx

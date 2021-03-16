@@ -1,18 +1,18 @@
 # Template file for 'kwayland'
 pkgname=kwayland
-version=5.70.0
+version=5.80.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="kcoreaddons pkg-config extra-cmake-modules qt5-host-tools qt5-tools-devel
- qt5-wayland-devel wayland-devel"
+ plasma-wayland-protocols qt5-wayland-devel wayland-devel"
 makedepends="qt5-tools-devel MesaLib-devel wayland-devel wayland-protocols qt5-wayland-devel"
 short_desc="Qt-style client and server library wrapper for Wayland libraries"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
-homepage="https://projects.kde.org/projects/frameworks/kwayland"
+homepage="https://invent.kde.org/frameworks/kwayland"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=3e9b424cf41799ddfe3f22e89c01b2e702e75cc0c6f4829377f6ca1ebf5b3743
+checksum=403bf7c8426febfda37f26addb90a31b5978d9fc76d25a22472570e8273b79ab
 
 kwayland-devel_package() {
 	short_desc+=" - development"

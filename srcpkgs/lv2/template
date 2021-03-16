@@ -1,17 +1,17 @@
 # Template file for 'lv2'
 pkgname=lv2
-version=1.16.0
+version=1.18.2
 revision=1
-build_style=waf
-hostmakedepends="python3"
+build_style=waf3
+hostmakedepends="pkg-config"
 makedepends="libsndfile-devel gtk+-devel"
 short_desc="Plugin standard for audio systems"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="ISC"
 homepage="http://lv2plug.in"
 distfiles="http://lv2plug.in/spec/${pkgname}-${version}.tar.bz2"
-checksum=dec3727d7bd34a413a344a820678848e7f657b5c6019a0571c61df76d7bdf1de
-python_version=2 #unverified
+checksum=4e891fbc744c05855beb5dfa82e822b14917dd66e98f82b8230dbd1c7ab2e05e
+python_version=3
 lib32disabled=yes
 
 post_install() {

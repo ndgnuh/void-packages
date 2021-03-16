@@ -1,22 +1,22 @@
 # Template file for 'sile'
 pkgname=sile
 version=0.9.5.1
-revision=3
+revision=4
 build_style=gnu-configure
 hostmakedepends="pkg-config"
-makedepends="harfbuzz-devel lua51-devel lua51-lpeg luaexpat
- lua51-zlib luafilesystem luasocket lua51-luasec"
-depends="lua51-lpeg luaexpat lua51-zlib luafilesystem luasocket
- lua51-luasec"
+makedepends="harfbuzz-devel lua51-devel lua51-lpeg lua51-luaexpat
+ lua51-zlib lua51-luafilesystem lua51-luasocket lua51-luasec"
+depends="lua51-lpeg lua51-luaexpat lua51-zlib lua51-luafilesystem
+ lua51-luasocket lua51-luasec"
 short_desc="Modern typesetting system inspired by TeX"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="MIT"
 homepage="http://www.sile-typesetter.org/"
 distfiles="https://github.com/simoncozens/sile/releases/download/v${version}/sile-${version}.tar.bz2"
 checksum=60cdcc4509971973feab352dfc1a86217cc1fdb12d56823f04d863afef92003a
 
 if [ "$CROSS_BUILD" ]; then
-	hostmakedepends+=" lua51 lua51-lpeg luaexpat lua51-zlib luafilesystem
+	hostmakedepends+=" lua51 lua51-devel lua51-lpeg luaexpat lua51-zlib luafilesystem
 	 luasocket lua51-luasec"
 fi
 

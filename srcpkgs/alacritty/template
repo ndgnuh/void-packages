@@ -1,6 +1,6 @@
 # Template file for 'alacritty'
 pkgname=alacritty
-version=0.4.3
+version=0.7.2
 revision=1
 build_wrksrc="${pkgname}"
 build_style=cargo
@@ -11,9 +11,14 @@ short_desc="Cross-platform, GPU-accelerated terminal emulator"
 maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="Apache-2.0"
 homepage="https://github.com/alacritty/alacritty"
-changelog="https://raw.githubusercontent.com/alacritty/alacritty/v${version}/CHANGELOG.md"
+changelog="https://raw.githubusercontent.com/alacritty/alacritty/master/CHANGELOG.md"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=8bc0fc90b16187a4f75a834f29c4725b2c6cfbab9543fc36913ddd9aca604c42
+checksum=750c294d384d23f1dfc30e9105380e4194507b0828ac91d8ffd94c9bbc18d6c3
+
+case "$XBPS_TARGET_MACHINE" in
+	ppc64*) ;;
+	ppc*) broken="ftbfs: thread 'main' panicked at 'slice index starts at 4289555962 but ends at 114', /builddir/rustc-1.46.0-src/src/libstd/io/mod.rs:396:27";;
+esac
 
 post_install() {
 	vinstall ../extra/linux/Alacritty.desktop 644 usr/share/applications
@@ -28,7 +33,6 @@ post_install() {
 
 alacritty-terminfo_package() {
 	short_desc+=" - terminfo data"
-	archs=noarch
 	pkg_install() {
 		vmove usr/share/terminfo
 	}

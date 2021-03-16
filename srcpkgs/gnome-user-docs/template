@@ -1,10 +1,9 @@
 # Template file for 'gnome-user-docs'
 pkgname=gnome-user-docs
-version=3.34.0
+version=3.38.2
 revision=1
-archs=noarch
 build_style=gnu-configure
-hostmakedepends="gettext pkg-config itstool gnome-doc-utils"
+hostmakedepends="gettext pkg-config itstool"
 makedepends="yelp"
 depends="yelp"
 short_desc="User documentation for GNOME"
@@ -13,4 +12,4 @@ license="CC-BY-3.0"
 homepage="https://github.com/GNOME/gnome-user-docs"
 #changelog="https://raw.githubusercontent.com/GNOME/gnome-user-docs/master/NEWS"
 distfiles="${GNOME_SITE}/${pkgname}/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=8f9907ff15fff97da75ece645cc86766703ac54d716d25563ba67ffed1af24ed
+checksum=f50cbb3a39dd6290c82f9476159606751ec9f25baafafb4c7c95b10f90f534c1

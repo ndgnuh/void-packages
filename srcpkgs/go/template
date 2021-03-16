@@ -1,6 +1,6 @@
 # Template file for 'go'
 pkgname=go
-version=1.14.4
+version=1.16.2
 revision=1
 create_wrksrc=yes
 build_wrksrc=go
@@ -9,8 +9,9 @@ short_desc="Go Programming Language"
 maintainer="Michael Aldridge <maldridge@voidlinux.org>"
 license="BSD-3-Clause"
 homepage="http://golang.org/"
+changelog="https://golang.org/doc/devel/release.html"
 distfiles="https://golang.org/dl/go${version}.src.tar.gz"
-checksum=7011af3bbc2ac108d1b82ea8abb87b2e63f78844f0259be20cde4d42c5c40584
+checksum=37ca14287a23cb8ba2ac3f5c3dd8adbc1f7a54b9701a57824bf19a0b271f83ea
 nostrip=yes
 noverifyrdeps=yes
 
@@ -20,6 +21,7 @@ case "${XBPS_TARGET_MACHINE}" in
 	i686*) _goarch=386 ;;
 	x86_64*) _goarch=amd64 ;;
 	ppc64le*) _goarch=ppc64le ;;
+	mips*) _goarch=mips ;;
 	*) broken="Unsupported architecture ${XBPS_TARGET_MACHINE}" ;;
 esac
 

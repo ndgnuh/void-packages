@@ -1,10 +1,10 @@
 # Template file for 'argyllcms'
 pkgname=argyllcms
 version=2.1.2
-revision=1
+revision=3
 wrksrc="Argyll_V${version}"
 hostmakedepends="ftjam zip unzip"
-makedepends="zlib-devel libjpeg-turbo-devel libXinerama-devel libressl-devel
+makedepends="zlib-devel libjpeg-turbo-devel libXinerama-devel openssl-devel
  libXScrnSaver-devel libXxf86vm-devel libXrandr-devel tiff-devel libpng-devel"
 short_desc="ICC compatible color management system"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -15,6 +15,8 @@ checksum=be378ca836b17b8684db05e9feaab138d711835ef00a04a76ac0ceacd386a3e3
 
 # Build system look only under / for headers and libraries. Breaks cross.
 nocross=yes
+
+CFLAGS="-fcommon"
 
 do_configure() {
 	sed -i 's:^TEST=="/lib/udev/usb-db", IMPORT{program}="usb-db %p":IMPORT{builtin}="hwdb --subsystem=usb":' usb/55-Argyll.rules

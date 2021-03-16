@@ -1,19 +1,23 @@
 # Template file for 'libgcrypt'
 pkgname=libgcrypt
-version=1.8.5
+version=1.9.2
 revision=1
 build_style=gnu-configure
 configure_args="--enable-static --without-capabilities"
 makedepends="libgpg-error-devel"
 short_desc="GNU cryptographic library"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="skmpz <dem.procopiou@gmail.com>"
 license="LGPL-2.1-or-later"
 homepage="https://www.gnupg.org"
 distfiles="https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-${version}.tar.bz2"
-checksum=3b4a2a94cb637eff5bdebbcaf46f4d95c4f25206f459809339cdada0eb577ac3
+checksum=b2c10d091513b271e47177274607b1ffba3d95b188bbfa8797f948aec9053c5a
+
+if [ "$CROSS_BUILD" ]; then
+	configure_args+=" ac_cv_sys_symbol_underscore=no"
+fi
 
 case "$XBPS_TARGET_MACHINE" in
-	ppc|ppc-musl) configure_args+=" ac_cv_sys_symbol_underscore=no" ;;
+	ppcle*) configure_args+=" --disable-ppc-crypto-support";;
 esac
 
 post_configure() {

@@ -1,19 +1,19 @@
 # Template file for 'kwallet'
 pkgname=kwallet
-version=5.70.0
+version=5.80.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
+configure_args="-DBUILD_TESTING=ON"
 hostmakedepends="gettext kcoreaddons extra-cmake-modules
  qt5-host-tools qt5-qmake python3 kdoctools"
 makedepends="kdoctools-devel gpgmepp-devel libgcrypt-devel
  kservice-devel knotifications-devel kiconthemes-devel boost-devel"
 short_desc="KDE Safe desktop-wide storage for passwords"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
-homepage="https://projects.kde.org/projects/frameworks/kwallet"
+homepage="https://invent.kde.org/frameworks/kwallet"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=39054e5fcb3f6633ea8496fc4c8b47f5543ecadc9739be7564fdec1c19f746df
+checksum=e1c9ed012735fdea4000086c2646e2ad99f15127b399420885a7b7de25ec99df
 
 kwallet-devel_package() {
 	short_desc+=" - development"

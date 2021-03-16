@@ -1,16 +1,16 @@
 # Template file for 'inspircd'
 pkgname=inspircd
-version=3.5.0
-revision=1
+version=3.8.1
+revision=2
 build_style=gnu-makefile
 hostmakedepends="perl pkg-config"
-makedepends="geoip-devel libressl-devel sqlite-devel gnutls-devel"
+makedepends="geoip-devel openssl-devel sqlite-devel gnutls-devel"
 short_desc="Modular Internet Relay Chat server"
 maintainer="Alexander Gehrke <void@qwertyuiop.de>"
 license="GPL-2.0-only"
 homepage="http://www.inspircd.org/"
 distfiles="https://github.com/inspircd/inspircd/archive/v${version}.tar.gz"
-checksum=c7e61d02bf6bde873bdf4696bf1b695e09d2d396fcaa05ff37942290d1b75c63
+checksum=2068ca42f39b382e1f74b650230e02690ffbca58c4f3aed075a6dd72e381b44b
 
 system_accounts="inspircd"
 inspircd_homedir="/var/lib/inspircd"

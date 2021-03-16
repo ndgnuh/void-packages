@@ -1,18 +1,18 @@
 # Template file for 'vapoursynth'
 pkgname=vapoursynth
-version=R49
-revision=1
+version=R52
+revision=2
 build_style=gnu-configure
-hostmakedepends="automake pkg-config libtool nasm python3-Cython"
-makedepends="python3-devel zimg-devel libmagick-devel libass-devel ffmpeg-devel
+hostmakedepends="automake libtool nasm pkg-config python3-Cython"
+makedepends="ffmpeg-devel python3-devel zimg-devel libass-devel libmagick-devel
  libxml2-devel"
 short_desc="Application for video manipulation"
 maintainer="lemmi <lemmi@nerd2nerd.org>"
 license="LGPL-2.1-or-later, OFL-1.1"
 homepage="http://www.vapoursynth.com"
 changelog="https://raw.githubusercontent.com/vapoursynth/vapoursynth/master/ChangeLog"
-distfiles="https://github.com/vapoursynth/vapoursynth/archive/$version.tar.gz"
-checksum=126d1e68d3a3e80d1e215c8a2a5dc8773f5fcac70a6c22dadc837bccb603bccd
+distfiles="https://github.com/vapoursynth/vapoursynth/archive/${version}.tar.gz"
+checksum=4d5dc7950f4357da695d29708bc98013bc3e0bd72fc5d697f8c91ce3c4a4b2ac
 
 pre_configure() {
 	./autogen.sh

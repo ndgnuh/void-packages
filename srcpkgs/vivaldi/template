@@ -1,9 +1,10 @@
 # Template file for 'vivaldi'
 pkgname=vivaldi
-version=3.1.1929.29
+version=3.6.2165.40
 revision=1
 _release=1
 archs="i686 x86_64"
+hostmakedepends="curl python3-html2text python3-setuptools"
 depends="desktop-file-utils hicolor-icon-theme"
 short_desc="Advanced browser made with the power user in mind"
 maintainer="Diogo Leal <diogo@diogoleal.com>"
@@ -17,13 +18,14 @@ nostrip=yes
 
 if [ "$XBPS_TARGET_MACHINE" = "x86_64" ]; then
 	_debarch=amd64
-	checksum=5413e091ceb7051bf0bfcfa4eb5af80af096d63702bbe220d5f35ad72cbf1c30
+	checksum=7e60bd8c1c452e2208c54190d84646b56646c4f89e4a91f655653bfb68eb868a
 else
 	_debarch=i386
-	checksum=a1ad613d1d4b62f6b6860c9c2fee08abc7270ec1eac6b6acddbd7c1e7d6dc881
+	checksum=c68601c114f80dd0c1b0b801d94aadf82f6711ea9f02e050fd283f9a88fd9401
 fi
 
 distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-${_release}_${_debarch}.deb"
+_licenseUrl="https://vivaldi.com/privacy/vivaldi-end-user-license-agreement/"
 
 do_extract() {
 	ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/vivaldi-stable_${version}-${_release}_${_debarch}.deb
@@ -47,4 +49,11 @@ do_install() {
 		vinstall opt/vivaldi/product_logo_${res}.png 0644 \
 			usr/share/icons/hicolor/${res}x${res}/apps vivaldi.png
 	done
+}
+
+post_install() {
+	curl ${_licenseUrl} \
+		| sed -n '/main id="main"/,/\/main/p' \
+			| html2text > EULA.md
+	vlicense EULA.md
 }

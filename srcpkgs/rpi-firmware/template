@@ -1,20 +1,23 @@
 # Template file for 'rpi-firmware'
-_githash="5574077183389cd4c65077ba18b59144ed6ccd6d"
+_githash="8f13114b9ea29bd004151d4a8afa500b2df721be"
 _gitshort="${_githash:0:7}"
 
 pkgname=rpi-firmware
-version=20200326
-revision=1
-archs=noarch
+version=20201123
+revision=4
+archs="armv6l* armv7l* aarch64*"
 wrksrc="firmware-${_githash}"
+provides="linux-firmware-broadcom-${version}_${revision}"
+replaces="linux-firmware-broadcom>=0"
 short_desc="Firmware files for the Raspberry Pi (git ${_gitshort})"
-maintainer="Peter Bui <pbui@github.bx612.space>"
+maintainer="Piraty <piraty1@inbox.ru>"
 license="BSD-3-Clause, custom:Cypress"
 homepage="https://github.com/raspberrypi/firmware"
 distfiles="https://github.com/raspberrypi/firmware/archive/${_githash}.tar.gz"
-checksum=0596505f529677906fed30e6c3c1d2387a5d287f668a719484e2f9d8a3059176
+checksum=f9be0cc177aae7dddaa0a2967d090ea33a95be9dd519d2eee3bc740af8ffb19e
 
 conf_files="/boot/cmdline.txt /boot/config.txt"
+nostrip=yes
 
 do_install() {
 	rm -f boot/*.img

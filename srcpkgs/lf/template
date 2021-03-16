@@ -1,23 +1,23 @@
 # Template file for 'lf'
 pkgname=lf
-version=r14
+version=r21
 revision=1
 build_style=go
 go_import_path="github.com/gokcehan/${pkgname}"
 go_ldflags="-X main.gVersion=$version"
-hostmakedepends="git"
 short_desc="Terminal file manager"
 maintainer="Daniel Lewan <vision360.daniel@gmail.com>"
 license="MIT"
 homepage="https://github.com/gokcehan/lf"
 distfiles="https://github.com/gokcehan/lf/archive/${version}.tar.gz"
-checksum=5266afa808f4612733af65289024c9eb182864f6a224fdfdf58f405a30c79644
+checksum=088510cc1f86084c02353d55e56a8c44576b5dbfc37327daabaa86ae6b287a20
 
 post_install() {
 	vlicense LICENSE
 	vsconf etc/lfrc.example lfrc
 	vman lf.1
-	vinstall etc/lf.fish 644 usr/share/fish/vendor_completions.d
-	vinstall etc/lf.zsh 644 usr/share/zsh/site-functions _lf
+	vcompletion etc/lf.fish fish
+	vcompletion etc/lf.zsh zsh
+	vcompletion etc/lf.bash bash
 	vinstall lf.desktop 644 usr/share/applications
 }

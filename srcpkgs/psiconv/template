@@ -1,7 +1,7 @@
 # Template file for 'psiconv'
 pkgname=psiconv
 version=0.9.9
-revision=8
+revision=9
 build_style=gnu-configure
 configure_args="--disable-xhtml-docs"
 hostmakedepends="pkg-config libmagick6-devel"
@@ -13,6 +13,8 @@ license="GPL-2.0-or-later"
 homepage="http://frodo.looijaard.name/project/psiconv"
 distfiles="http://www.frodo.looijaard.name/system/files/software/psiconv/psiconv-${version}.tar.gz"
 checksum=6d51fe79b502a1e277bea275a574ae2db5b1b9d7daef703a8fa3635ae02a8bb0
+
+CFLAGS="-fcommon"
 
 psiconv-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"

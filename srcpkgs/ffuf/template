@@ -1,6 +1,6 @@
 # Template file for 'ffuf'
 pkgname=ffuf
-version=1.0.2
+version=1.2.1
 revision=1
 build_style=go
 go_import_path="github.com/ffuf/ffuf"
@@ -9,7 +9,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="MIT"
 homepage="https://github.com/ffuf/ffuf"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=018e3aa92d27846eaf55b49a451b2517db1ad65d5d696116ade1fe8bda4535ba
+checksum=ff474b21e192005a2df0f09f942b0370bdcb45d64ee35bd8782eb44a5c636e96
 
 post_install() {
 	vlicense LICENSE

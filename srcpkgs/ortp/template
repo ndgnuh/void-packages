@@ -1,22 +1,16 @@
 # Template file for 'ortp'
 pkgname=ortp
-version=1.0.2
-revision=4
+version=4.4.17
+revision=1
 build_style=cmake
 configure_args="-DENABLE_STATIC=OFF"
 makedepends="bctoolbox-devel"
 short_desc="Real-Time Transport Protocol (RFC 3550) library"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://www.linphone.org/technical-corner/ortp"
-distfiles="https://github.com/BelledonneCommunications/ortp/archive/${version}.tar.gz"
-checksum=f8069cbb0c9679545e52d4080e07b4c2bea049f2571100332c90539490240d76
-
-CFLAGS="-Wno-stringop-truncation"
-
-pre_configure() {
-	vsed -i CMakeLists.txt -e "s;BcToolbox;bctoolbox;g"
-}
+distfiles="https://gitlab.linphone.org/BC/public/ortp/-/archive/${version}/ortp-${version}.tar.gz"
+checksum=4368be03f7f1ec6a29ada80c1a962a4793964e1c58f4d9b9117e68332a401c93
 
 ortp-devel_package() {
 	depends="bctoolbox-devel ortp-${version}_${revision}"
@@ -24,7 +18,7 @@ ortp-devel_package() {
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
-		vmove usr/share/oRTP/cmake
+		vmove usr/lib/cmake
 		vmove "usr/lib/*.so"
 	}
 }

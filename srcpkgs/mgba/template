@@ -1,17 +1,18 @@
 # Template file for 'mgba'
 pkgname=mgba
-version=0.8.1
+version=0.8.4
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config qt5-host-tools qt5-qmake desktop-file-utils"
 makedepends="SDL2-devel ffmpeg-devel libedit-devel libepoxy-devel libmagick-devel
- libzip-devel minizip-devel qt5-multimedia-devel qt5-tools-devel"
+ libzip-devel qt5-multimedia-devel qt5-tools-devel"
 short_desc="Game Boy Advance emulator written in C"
 maintainer="bra1nwave <bra1nwave@protonmail.com>"
 license="MPL-2.0"
 homepage="https://www.mgba.io/"
+changelog="https://raw.githubusercontent.com/mgba-emu/mgba/master/CHANGES"
 distfiles="https://github.com/mgba-emu/${pkgname}/archive/${version}.tar.gz"
-checksum=df136ea50c9cca380ab93e00fd8d87811e41a49a804c5b0e018babef0c490f13
+checksum=6b94873dac9040fd6fd9f13f76dc48f342e954f3b4cf82717b59601c3a32b72c
 
 libmgba_package() {
 	short_desc+=" - shared library"

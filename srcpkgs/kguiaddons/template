@@ -1,17 +1,23 @@
 # Template file for 'kguiaddons'
 pkgname=kguiaddons
-version=5.70.0
+version=5.80.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
-hostmakedepends="kcoreaddons pkg-config extra-cmake-modules qt5-host-tools qt5-tools-devel"
-makedepends="qt5-tools-devel qt5-x11extras-devel xcb-util-devel"
+configure_args="-DBUILD_TESTING=ON -DWaylandScanner_EXECUTABLE=/usr/bin/wayland-scanner"
+hostmakedepends="kcoreaddons pkg-config extra-cmake-modules
+ wayland-devel qt5-wayland qt5-host-tools qt5-tools-devel"
+makedepends="qt5-tools-devel qt5-x11extras-devel xcb-util-devel
+ qt5-wayland-devel wayland-devel"
 short_desc="KDE frameworks - Addons to QtGui"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-only, LGPL-2.0-or-later, LGPL-2.1-or-later"
-homepage="https://projects.kde.org/projects/frameworks/kguiaddons"
+homepage="https://invent.kde.org/frameworks/kguiaddons"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=b43c80e10dea65c7f9325d9ba26a2b95aa8586f697b14e0e84f4ffb46093cdfa
+checksum=e563f232261b3a60c8d6c88ec5b08b6267c3c513d76d368386386192cefd4dc5
+
+pre_check() {
+	export QT_QPA_PLATFORM=offscreen
+}
 
 kguiaddons-devel_package() {
 	short_desc+=" - development"

@@ -1,23 +1,23 @@
 # Template file for 'rpi-kernel'
 #
 # We track the latest Raspberry Pi LTS kernel as that is what is used in the
-# official Raspbian distribution. This is currently 4.19:
+# official Raspbian distribution. This is currently 5.4:
 #
-#   https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=224931
+#   https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=269769
 
-_githash="f0e620550b8b422fef4adcabb2d0e8e69f1fec75"
+_githash="76c49e60e742d0bebd798be972d67dd3fd007691"
 _gitshort="${_githash:0:7}"
 
 pkgname=rpi-kernel
-version=4.19.122
+version=5.4.83
 revision=1
 wrksrc="linux-${_githash}"
-maintainer="Peter Bui <pbui@github.bx612.space>"
+maintainer="Piraty <piraty1@inbox.ru>"
 homepage="http://www.kernel.org"
 license="GPL-2.0-only"
 short_desc="The Linux kernel for Raspberry Pi (${version%.*} series [git ${_gitshort}])"
 distfiles="https://github.com/raspberrypi/linux/archive/${_githash}.tar.gz"
-checksum=33601014b658e2257a51c9b474bd590f75193e11cf78ac200fa5e6dea0caf6d8
+checksum=4a98ea0d68c6e74d479789c12fc97619c872cb2607ae87a881a9491c1c3fbc35
 python_version=2
 
 _kernver="${version}_${revision}"
@@ -29,7 +29,7 @@ noshlibprovides=yes
 
 # RPi, RPi2, RPi3
 archs="armv6l* armv7l* aarch64*"
-hostmakedepends="perl kmod uboot-mkimage libressl-devel bc bison flex"
+hostmakedepends="perl kmod uboot-mkimage openssl-devel bc bison flex"
 makedepends="ncurses-devel"
 triggers="kernel-hooks"
 # These files could be modified when an external module is built.
@@ -92,7 +92,10 @@ do_configure() {
 
 	# HID Controllers
 	echo "CONFIG_HID_STEAM=y" >> "$defconfig"
-	
+
+	# LXD 4.2+ support
+	echo "CONFIG_BRIDGE_VLAN_FILTERING=y" >> "$defconfig"
+
 	make ${makejobs} ${_cross} ARCH=${_arch} ${target}
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
@@ -125,10 +128,10 @@ do_install() {
 	# Install device tree blobs
 	make ${makejobs} ARCH=${_arch} INSTALL_DTBS_PATH=${DESTDIR}/boot dtbs_install
 
-	#move rpi3's dtb that ended up in /boot/broadcom
+	# move dtb that ended up in /boot/broadcom
 	case "$XBPS_TARGET_MACHINE" in
 	aarch64*)
-		mv ${DESTDIR}/boot/broadcom/bcm2710-rpi-3-b.dtb ${DESTDIR}/boot
+		mv ${DESTDIR}/boot/broadcom/bcm{2710,2837}-*.dtb ${DESTDIR}/boot
 		;;
 	esac
 
@@ -196,6 +199,9 @@ do_install() {
 	cp -a security/selinux/include ${hdrdest}/security/selinux
 	mkdir -p ${hdrdest}/tools/include
 	cp -a tools/include/tools ${hdrdest}/tools/include
+	if [ -d "arch/${_arch}/tools" ]; then
+		cp -a arch/${_arch}/tools ${hdrdest}/arch/${_arch}
+	fi
 
 	# copy arch includes for external modules
 	mkdir -p ${hdrdest}/arch/${_arch}

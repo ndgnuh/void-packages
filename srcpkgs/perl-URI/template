@@ -1,8 +1,7 @@
 # Template file for 'perl-URI'
 pkgname=perl-URI
-version=1.76
+version=5.07
 revision=1
-archs=noarch
 wrksrc="URI-$version"
 build_style=perl-module
 hostmakedepends="perl"
@@ -14,4 +13,4 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="Artistic-1.0-Perl, GPL-1.0-or-later"
 homepage="https://metacpan.org/release/URI"
 distfiles="${CPAN_SITE}/URI/URI-${version}.tar.gz"
-checksum=b2c98e1d50d6f572483ee538a6f4ccc8d9185f91f0073fd8af7390898254413e
+checksum=eeb6ed2ae212434e2021e29f7556f4024169421a5d8b001a89e65982944131ea

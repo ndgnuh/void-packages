@@ -1,8 +1,7 @@
 # Template file for 'python3-setuptools'
 pkgname=python3-setuptools
-version=46.3.0
+version=54.1.1
 revision=1
-archs=noarch
 wrksrc="setuptools-${version}"
 build_style=python3-module
 hostmakedepends="python3-devel"
@@ -11,16 +10,18 @@ short_desc="Easily build and distribute Python3 packages"
 maintainer="Alessio Sergi <al3hex@gmail.com>"
 license="MIT"
 homepage="https://github.com/pypa/setuptools"
-distfiles="${PYPI_SITE}/s/setuptools/setuptools-${version}.zip"
-checksum=b5900faa2c6653ed86448a44a2b0455cc25c613928bf8b0f0c92d9a558e79cf3
-alternatives="setuptools:easy_install:/usr/bin/easy_install3"
+changelog="https://raw.githubusercontent.com/pypa/setuptools/master/CHANGES.rst"
+distfiles="${PYPI_SITE}/s/setuptools/setuptools-${version}.tar.gz"
+checksum=1ce82798848a978696465866bb3aaab356003c42d6143e1111fcf069ac838274
 provides="python3-distribute-${version}_1"
 replaces="python3-distribute>=0"
+# Tests rely on jaraco.path, which relies on singledispatch, both unpackaged;
+# singledispatch backports functools.singledispatch and is not worth packaging
+make_check=no
 
 export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0
 export SETUPTOOLS_DISABLE_VERSIONED_EASY_INSTALL_SCRIPT=1
 
 post_install() {
 	vlicense LICENSE
-	mv ${PKGDESTDIR}/usr/bin/easy_install ${PKGDESTDIR}/usr/bin/easy_install3
 }

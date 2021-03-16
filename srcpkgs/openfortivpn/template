@@ -1,7 +1,7 @@
 # Template file for 'openfortivpn'
 pkgname=openfortivpn
-version=1.14.1
-revision=1
+version=1.16.0
+revision=2
 build_style=gnu-configure
 configure_args="
  --enable-proc
@@ -11,14 +11,14 @@ configure_args="
  --with-resolvconf=/usr/bin/resolvconf
  --with-rt_dst"
 hostmakedepends="autoconf automake pkg-config"
-makedepends="libressl-devel"
+makedepends="openssl-devel"
 short_desc="Client for PPP+SSL VPN tunnel services"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/adrienverge/openfortivpn"
 changelog="https://github.com/adrienverge/openfortivpn/raw/master/CHANGELOG.md"
 distfiles="https://github.com/adrienverge/openfortivpn/archive/v${version}.tar.gz"
-checksum=bc62fc6ecaaa6c6f8f2510e14a067a0cb9762158d9460c04555990bba44b50ca
+checksum=599b1e159a03be557242aa0e693bb7ddbadf2a4a2b3ffcf77dc15459fe7f6cd6
 
 conf_files="/etc/openfortivpn/config"
 

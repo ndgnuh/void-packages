@@ -1,17 +1,17 @@
 # Template file for 'xaos'
 pkgname=xaos
-version=4.0
+version=4.2.1
 revision=1
 wrksrc="XaoS-release-${version}"
 build_style=qmake
-hostmakedepends="qt5-qmake qt5-devel which"
+hostmakedepends="qt5-qmake qt5-host-tools which"
 makedepends="qt5-devel gsl-devel"
 short_desc="Fast interactive real-time fractal zoomer/morpher"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
 homepage="https://xaos-project.github.io/"
 distfiles="https://github.com/xaos-project/XaoS/archive/release-${version}.tar.gz"
-checksum=2d72b38a53d975bfdb4ed828125f8e7017f70761d4f06249c5630367522f8e6f
+checksum=bf21d3f50d7c1626c5c96da475f84ea24d24a164ec6cc2bbc4ee229bc4a65967
 
 pre_configure() {
 	vsed -i i18n/i18n.pri -e'/updateqm.commands/ s;lrelease;lrelease-qt5;'

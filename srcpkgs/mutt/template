@@ -1,6 +1,6 @@
 # Template file for 'mutt'
 pkgname=mutt
-version=1.14.2
+version=2.0.6
 revision=1
 build_style=gnu-configure
 configure_args="--enable-pop --enable-imap --enable-smtp --enable-hcache
@@ -9,20 +9,16 @@ configure_args="--enable-pop --enable-imap --enable-smtp --enable-hcache
  --with-gdbm=${XBPS_CROSS_BASE}/usr"
 conf_files="/etc/${pkgname}/Muttrc"
 hostmakedepends="libidn2-devel perl pkg-config"
-makedepends="gdbm-devel gpgme-devel libidn2-devel libressl-devel libsasl-devel
+makedepends="gdbm-devel gpgme-devel libidn2-devel openssl-devel libsasl-devel
  ncurses-devel"
 depends="cyrus-sasl-modules mime-types"
 short_desc="Mutt Mail Client"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="http://www.mutt.org"
-changelog="http://mutt.org/relnotes/1.14"
+changelog="http://mutt.org/relnotes/${version%.*}"
 distfiles="http://ftp.mutt.org/pub/mutt/${pkgname}-${version}.tar.gz"
-checksum=e22f700e8c57fbc41a642bfeeeed1adca06e6187887c39614a5c38d381a6ac31
-
-pre_build() {
-	make CC="$BUILD_CC" CFLAGS="$BUILD_CFLAGS -fPIC" CPPFLAGS= -C doc
-}
+checksum=81e31c45895fd624747f19106aa2697d2aa135049ff2e9e9db0a6ed876bcb598
 
 post_install() {
 	# provided by mime-types

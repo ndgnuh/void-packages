@@ -1,16 +1,16 @@
 # Template file for 'monolith'
 pkgname=monolith
-version=2.2.7
+version=2.4.1
 revision=1
 build_style=cargo
 hostmakedepends="pkg-config"
-makedepends="libressl-devel"
+makedepends="openssl-devel"
 short_desc="Save HTML pages with ease "
 maintainer="Benjamín Albiñana <benalb@gmail.com>"
 license="Unlicense"
 homepage="https://github.com/Y2Z/monolith"
 distfiles="https://github.com/Y2Z/monolith/archive/v${version}.tar.gz"
-checksum=8fa8ea66383f7278f6fcbe1ba75ffc9243b93031a88725135ca3b0eeb38c7df9
+checksum=d68980bd5ade841f41e0d35447f9c299c82118eef2d291c2c07063086a18de0d
 
 post_install() {
 	vlicense LICENSE

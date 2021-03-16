@@ -1,7 +1,7 @@
 # Template file for 'geeqie'
 pkgname=geeqie
 version=1.5.1
-revision=1
+revision=2
 build_style=gnu-configure
 configure_args="--enable-gtk3"
 hostmakedepends="automake pkg-config intltool glib-devel gtk+3-devel"
@@ -16,6 +16,8 @@ distfiles="http://www.geeqie.org/geeqie-${version}.tar.xz"
 checksum=4854d5d323c31f8f4068fd73ab2c454ff91e826c4ca4d37b22c246ad14dea10a
 patch_args="-Np1"
 
+CFLAGS="-Wno-error -fcommon"
+
 post_extract() {
 	# Missing from release tarball, and requires git tree to generate
 	sed -e "/readme_DATA/s/ChangeLog\(.html\)\?//g" -i Makefile.am
@@ -23,10 +25,13 @@ post_extract() {
 
 pre_configure() {
 	NOCONFIGURE=1 ./autogen.sh
+	# The shipped configure doesn't have the code path
+	# for generating gtk+3 cflags and ldflags
+	vsed -i -e '/DATADIRNAME=/s/=.*/=share/' \
+		-e '/CATOBJEXT=/s/\.mo/.gmo/' \
+		configure
 }
-# musl gives many warnings and stops compiling after many warnings
-if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+
 do_build() {
-	make CFLAGS="$CFLAGS -Wno-error"
+	make ${makejobs} CFLAGS="${CFLAGS}"
 }
-fi

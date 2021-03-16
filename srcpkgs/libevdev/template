@@ -1,17 +1,17 @@
 # Template file for 'libevdev'
 pkgname=libevdev
-version=1.9.0
+version=1.11.0
 revision=1
 build_style=gnu-configure
 configure_args="--disable-gcov"
 hostmakedepends="python3"
 checkdepends="pkg-config check-devel"
 short_desc="Wrapper library for evdev devices"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="skmpz <dem.procopiou@gmail.com>"
 license="MIT"
 homepage="https://www.freedesktop.org/wiki/Software/libevdev/"
 distfiles="${FREEDESKTOP_SITE}/${pkgname}/${pkgname}-${version}.tar.xz"
-checksum=e7e18a64264f2dea19b6c50a481f8c062529d42919ccda0bc861495bce28eb9e
+checksum=63f4ea1489858a109080e0b40bd43e4e0903a1e12ea888d581db8c495747c2d0
 
 post_install() {
 	vlicense COPYING

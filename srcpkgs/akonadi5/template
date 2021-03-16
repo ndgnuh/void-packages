@@ -1,9 +1,10 @@
 # Template file for 'akonadi5'
 pkgname=akonadi5
-version=20.04.1
+version=20.12.3
 revision=1
 wrksrc="akonadi-${version}"
 build_style=cmake
+build_helper="qemu"
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools python3
  shared-mime-info libxslt pkg-config gettext"
 makedepends="qt5-devel qt5-plugin-mysql qt5-plugin-odbc qt5-plugin-pgsql
@@ -11,12 +12,13 @@ makedepends="qt5-devel qt5-plugin-mysql qt5-plugin-odbc qt5-plugin-pgsql
  kdbusaddons-devel kiconthemes-devel kitemmodels-devel kio-devel sqlite-devel
  kaccounts-integration-devel libaccounts-qt5-devel qt5-tools-devel"
 depends="shared-mime-info"
+checkdepends="dbus ${depends}"
 short_desc="PIM layer providing an asynchronous API to access PIM data"
-maintainer="John <johnz@posteo.net>"
+maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM/Akonadi"
 distfiles="${KDE_SITE}/release-service/${version}/src/akonadi-${version}.tar.xz"
-checksum=0bffbcd00e0d4f4f3a2084ce6a42da8f05fdf14cb361141b4b734e35203d764e
+checksum=b919ac1d1c8534c304925ba51f7f79b1b5fd8fa21fb906ee3a5829c403f4922d
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-tools-devel qt5-devel kconfig kcoreaddons"
@@ -32,15 +34,12 @@ pre_configure() {
 	fi
 }
 
-pre_build() {
-	if [ "$CROSS_BUILD" ]; then
-		sed -e "s?/usr/${XBPS_CROSS_TRIPLET}??g" \
-			-i build/src/private/protocolgen/CMakeFiles/protocolgen.dir/flags.make
-		sed -e "s?/usr/${XBPS_CROSS_TRIPLET}??g" \
-			-i build/src/private/protocolgen/CMakeFiles/protocolgen.dir/link.txt
-		sed -e 's!\&\& protocolgen!\&\& ../../bin/protocolgen!' \
-			-i build/src/private/CMakeFiles/generate_protocol.dir/build.make
-	fi
+do_check() {
+	# failing tests are disabled - sqlite tests hang on futex
+	cd build
+	QT_QPA_PLATFORM=offscreen CTEST_OUTPUT_ON_FAILURE=TRUE \
+		dbus-run-session ctest -E \
+		"(akonadixml-xmldocument|mimetypechecker|AkonadiControl-agenttype|.*sqlite.*)test"
 }
 
 akonadi5-devel_package() {

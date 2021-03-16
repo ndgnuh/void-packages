@@ -1,30 +1,18 @@
 # Template file for 'volta'
 pkgname=volta
-version=0.8.1
-revision=1
-archs="x86_64 i686" # Due to volta pulling pre-built binaries later. Evil.
-build_helper="rust"
-hostmakedepends="cargo pkg-config"
-makedepends="libressl-devel"
+version=1.0.2
+revision=2
+archs="x86_64" # Due to volta pulling pre-built binaries later. Evil.
+build_style="cargo"
+hostmakedepends="pkg-config"
+makedepends="openssl-devel"
 short_desc="JavaScript tool version sync helper"
 maintainer="Alex Lohr <alex.lohr@logmein.com>"
 license="BSD-2-Clause"
 homepage="https://volta.sh/"
 distfiles="https://github.com/volta-cli/volta/archive/v${version}.tar.gz"
-checksum=b60ce05b27aa5b94e5b40470a623a849daa335be3a00b1eb36cbbafa2b044842
+checksum=83659888099408dbc44d47a6bba6c3d450ebd11580f74fd3e64ab6c1adbb5724
 
-pre_build() {
-	cargo update --package openssl-sys --precise 0.9.55
-}
-
-do_build() {
-	cargo build --release --target ${RUST_TARGET}
-}
-
-do_install() {
+post_install() {
 	vlicense LICENSE
-
-	vbin target/${RUST_TARGET}/release/volta
-	vbin target/${RUST_TARGET}/release/volta-shim
-	vbin target/${RUST_TARGET}/release/volta-migrate
 }

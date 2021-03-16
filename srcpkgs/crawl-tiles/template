@@ -1,6 +1,6 @@
 # Template file for 'crawl-tiles'
 pkgname=crawl-tiles
-version=0.24.1
+version=0.26.1
 revision=1
 wrksrc="crawl-${version}"
 build_wrksrc="crawl-ref/source"
@@ -13,10 +13,10 @@ makedepends="ncurses-devel lua51-devel sqlite-devel zlib-devel
 depends="dejavu-fonts-ttf"
 short_desc="Dungeon Crawl Stone Soup roguelike adventure (with tiles GUI)"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
-license="GPL-2"
+license="GPL-2.0-or-later"
 homepage="http://crawl.develz.org/"
 distfiles="https://github.com/crawl/crawl/archive/${version}.tar.gz"
-checksum=603388633d90dfebc98379cf821d670b7ecd6bf139700e33f32e54c59b8a0d11
+checksum=c8c6abbefa7f21383ea77cd017033050471e06c60ea4deebd033f5198bc39596
 nocross=yes
 
 post_extract() {
@@ -25,12 +25,9 @@ post_extract() {
 
 do_build() {
 	echo $version >util/release_ver
-	# crashes with relro?
-	make ${makejobs} CC="$CC" CXX="$CXX" \
-		${make_build_args} EXTERNAL_FLAGS="$CFLAGS" V=1 build-rltiles
 	make ${makejobs} CC="$CC" CXX="$CXX" \
 		EXTERNAL_FLAGS="$CFLAGS" EXTERNAL_LDFLAGS="$LDFLAGS" \
-		${make_build_args} V=1 DESTDIR=${DESTDIR}
+		${make_build_args} V=1 NO_TRY_GOLD=1 DESTDIR=${DESTDIR}
 }
 
 do_install() {

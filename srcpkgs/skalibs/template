@@ -1,8 +1,7 @@
 # Template file for 'skalibs'
 pkgname=skalibs
-version=2.9.2.1
+version=2.10.0.2
 revision=1
-_sysdepspkg=skaware-void-sysdeps
 build_style=configure
 configure_args="--libdir=/usr/lib --enable-static --enable-shared
  --enable-force-devr
@@ -10,19 +9,18 @@ configure_args="--libdir=/usr/lib --enable-static --enable-shared
  --bindir=/usr/bin --dynlibdir=/usr/lib
  --with-sysdep-devurandom=yes"
 short_desc="General purpose libraries for building software from skarnet.org"
-maintainer="bougyman <bougyman@voidlinux.org>"
+maintainer="mobinmob <mobinmob@disroot.org>"
 license="ISC"
 homepage="https://skarnet.org/software/skalibs/"
 changelog="https://skarnet.org/software/skalibs/upgrade.html"
 distfiles="https://skarnet.org/software/${pkgname}/${pkgname}-${version}.tar.gz"
-checksum=250b99b53dd413172db944b31c1b930aa145ac79fe6c5d7e6869ef804228c539
+checksum=8bba3d7650bab83d4ea2ad21d6bfb5479a8652e362a478fcb783b3c7cf891e0f
 
 post_install() {
 	vlicense COPYING LICENSE
 }
 
 skalibs-doc_package() {
-	archs=noarch
 	short_desc+=" - documentation"
 	depends="${sourcepkg}>=${version}_${revision}"
 	pkg_install() {
