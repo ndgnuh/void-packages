@@ -1,0 +1,23 @@
+# Template file for 'perl-Image-Size'
+pkgname=perl-Image-Size
+version=3.300
+revision=1
+#archs="i686 x86_64"
+wrksrc="${pkgname/perl-/}-${version}"
+#wrksrc=
+#create_wrksrc=yes
+build_style=perl-module
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="perl"
+makedepends="perl"
+depends=""
+short_desc="Read the dimensions of an image in several popular formats"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="perl_5"
+homepage="https://metacpan.org/release/Image-Size"
+distfiles="https://cpan.metacpan.org/authors/id/R/RJ/RJRAY/Image-Size-${version}.tar.gz"
+checksum=53c9b1f86531cde060ee63709d1fda73cabc0cf2d581d29b22b014781b9f026b
