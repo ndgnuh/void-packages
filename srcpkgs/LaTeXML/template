@@ -1,0 +1,28 @@
+# Template file for 'LaTeXML'
+pkgname=LaTeXML
+version=0.8.5
+revision=1
+#archs="i686 x86_64"
+#wrksrc=
+#create_wrksrc=yes
+build_style=gnu-makefile
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="perl"
+makedepends="perl-Parse-RecDescent"
+depends="perl-XML-LibXML perl-File-Which perl-LWP
+perl-XML-LibXSLT perl-Text-Unidecode perl-Parse-RecDescent
+perl-Pod-Parser perl-IO-String perl-Archive-Zip"
+short_desc="TeX and LaTeX to XML/HTML/ePub/MathML translator."
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/brucemiller/LaTeXML"
+distfiles="${homepage}/archive/refs/tags/v${version}.tar.gz"
+checksum=d4f8be2d6d37ad67f215ef503810d87b5d877d44f69bab650b27d77971e48724
+
+pre_build() {
+	perl Makefile.PL
+}
