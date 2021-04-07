@@ -1,0 +1,15 @@
+# Template file for 'python3-txZMQ'
+pkgname=python3-txZMQ
+version=0.8.2
+revision=1
+wrksrc=txZMQ-${version}
+build_style=python3-module
+makedepends="python3-setuptools python3-devel python3-Twisted python3-pyzmq"
+depends="python3-Twisted python3-service_identity python3-pyzmq zeromq
+ python3-pyflakes python3-pycodestyle python3-Sphinx python3-coverage python3-coveralls"
+short_desc="ZeroMQ bindings for Twisted"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/smira/txZMQ"
+distfiles="${PYPI_SITE}/t/txZMQ/txZMQ-${version}.tar.gz"
+checksum="07a9a480e58d4d732eef9efd7e264f2348cbf27ee82b338ec818a8504006e1c0"
