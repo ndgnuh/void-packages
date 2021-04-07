@@ -1,0 +1,24 @@
+# Template file for 'python3-ilua'
+pkgname=python3-ilua
+version=0.2.1
+revision=1
+#archs="i686 x86_64"
+wrksrc=ilua-${version}
+#create_wrksrc=yes
+build_style=python3-module
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="python3-setuptools python3-devel"
+makedepends="python3-devel"
+#lua51-devel lua52-devel lua53-devel lua54-devel
+depends="python3 python3-Twisted python3-termcolor python3-Pygments
+ python3-txZMQ python3-jupyter_core python3-jupyter_console"
+short_desc="Portable Lua kernel for Jupyter"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/guysv/ilua"
+distfiles="https://github.com/guysv/ilua/archive/refs/tags/${version}.tar.gz"
+checksum=7f57c957e49da88972d90dff6050e628c645f27b1d5c19071fc985905f54e4f3
