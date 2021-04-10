@@ -1,0 +1,10 @@
+# Template file for 'latexindent-deps'
+pkgname=latexindent-deps
+version=1.0.0
+revision=1
+build_style=meta
+depends="perl-YAML-Tiny perl-File-HomeDir perl-Unicode-LineBreak"
+short_desc="Dependencies for latex indent"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="none"
+homepage="none"
