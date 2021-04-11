@@ -1,0 +1,19 @@
+# Template file for 'python3-odpslides'
+pkgname=python3-odpslides
+version=0.0.3
+revision=1
+wrksrc=odpslides-${version}
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+makedepends="python3-future"
+depends="python3-future"
+short_desc="Creates Opendocument Presentations For Microsoft Powerpoint, Libreoffice And Openoffice"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://odpslides.readthedocs.io"
+distfiles="${PYPI_SITE}/o/odpslides/odpslides-${version}.zip"
+checksum=afec09f58bd9eb708bd88a2acdd08568a67efa09f1fb1ea1ea0f03bd32b3d366
+
+post_install() {
+	rm ${PKGDESTDIR}/usr/lib/python3.9/site-packages/odpslides/ElementTree_27OD.py
+}
