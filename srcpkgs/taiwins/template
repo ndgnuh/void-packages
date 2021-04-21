@@ -1,7 +1,6 @@
 # Template file for 'taiwins'
 pkgname=taiwins
-_commit=787d1a5953694d8f1cf21af0cd3f6edf0f68ff68
-version=0.${_commit}
+version=0.git
 revision=1
 #archs="i686 x86_64"
 wrksrc="${pkgname}-${_commit}"
@@ -13,18 +12,37 @@ build_style=meson
 #conf_files=""
 #make_dirs="/var/log/dir 0755 root root"
 hostmakedepends="pkg-config cmake meson git ninja"
-makedepends="wayland-protocols libxkbcommon-devel wayland-devel cairo-devel librsvg-devel lua53-devel dbus-devel dbus libinput-devel pam-devel"
-depends="glibc dbus lua53 cairo fontconfig freetype librsvg wlroots pam libdrm libXcursor libxkbcommon wayland libinput libGL libEGL libGLES"
+makedepends="MesaLib-devel mesa wayland-protocols wayland-devel cairo cairo-devel librsvg-devel lua53 lua53-devel dbus-devel dbus libinput-devel pam-devel elogind-devel elogind xorg-server-xwayland"
+depends="glibc dbus lua53 cairo fontconfig freetype librsvg wlroots pam libdrm libXcursor libxkbcommon wayland libinput elogind"
 short_desc="Taiwins, a modern wayland compositor"
 maintainer="ndgnuh <ndgnuh@protonmail.com>"
 license="GPL-2.0-only"
 homepage="https://taiwins.org"
+noshlibprovides="true"
+noverifydeps="true"
 # distfiles="https://github.com/taiwins/taiwins/archive/${_commit}.tar.gz"
 # checksum="a165aa8873b778216bb997d7d4c58df259d53519f73f71be5eb00e5c96f9948a"
 
 do_fetch() {
-	git clone --recursive "https://github.com/taiwins/taiwins.git" "${wrksrc}"
+	git clone --recursive "https://github.com/taiwins/taiwins.git" "${wrksrc}" --depth 1
 	cd "${wrksrc}"
-	git fetch origin ${_commit}
-	git reset --hard FETCH_HEAD
 }
+
+# pre_build() {
+#	> $wkrsrc/build/libtaiwins/options.h <<- EOF
+# #ifndef TW_COMPILE_OPTIONS_H
+# #define TW_COMPILE_OPTIONS_H
+#
+# #define _TW_HAS_EGLMESAEXT 0
+# #define _TW_ENABLE_PROFILING 0
+# #define _TW_HAS_X11_BACKEND 0
+# #define _TW_HAS_XWAYLAND 1
+# #define _TW_HAS_XCB_ICCCM 0
+# #define _TW_HAS_XCB_ERRORS 0
+# #define _TW_HAS_LIBINPUT_GET_TOUCH_COUNT 1
+# #define _TW_HAS_SYSTEMD 0
+# #define _TW_HAS_ELOGIND 1
+#
+# #endif /* EOF */
+#	EOF
+# }
