@@ -11,6 +11,7 @@ homepage="https://jdk.java.net/java-se-ri/15"
 distfiles="https://download.java.net/openjdk/jdk15/ri/openjdk-${version}_linux-x64_bin.tar.gz"
 checksum=bb67cadee687d7b486583d03c9850342afea4593be4f436044d785fba9508fb7
 nopie=true
+noverifyrdeps=true
 
 alternatives="
  java:/usr/bin/java:/usr/lib/jvm/openjdk15-bin/bin/java
