@@ -1,0 +1,29 @@
+# Template file for 'firefox-developer-bin'
+pkgname=firefox-developer-bin
+version=89.0b9
+revision=1
+archs="x86_64"
+build_style=fetch
+hostmakedepends="tar"
+short_desc="Mozilla Firefox web browser, developer edition, prebuilt binary"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="MPL-2.0, GPL-2.0-or-later, LGPL-2.1-or-later"
+homepage="https://www.mozilla.org/firefox/"
+distfiles="https://download-installer.cdn.mozilla.net/pub/devedition/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2"
+checksum=5e870b51306a5f8ff924598ae4b11e8d5df32051915bf4cce2721a4b9fce61fb
+conflicts="firefox>=0 firefox-esr>=0"
+nopie=true
+noshlibprovides=true
+nostrip=true
+
+post_extract() {
+	cd $wrksrc
+	tar xvf $wrksrc/firefox-${version}.tar.bz2
+}
+
+do_install() {
+	mkdir $PKGDESTDIR/opt/ -p
+	mkdir $PKGDESTDIR/usr/bin -p
+	mv $wrksrc/firefox $PKGDESTDIR/opt/firefox
+	ln -s /opt/firefox/firefox $PKGDESTDIR/usr/bin/firefox
+}
