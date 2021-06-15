@@ -1,0 +1,19 @@
+# Template file for 'hunspell-vi'
+pkgname=hunspell-vi
+version=2.2.0
+revision=1
+create_wrksrc=yes
+hostmakedepends="tar"
+short_desc="Vietnamese dictionary for hunspell"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="unlicense"
+homepage="https://github.com/1ec5/hunspell-vi"
+distfiles="$homepage/archive/refs/tags/v${version}.tar.gz"
+checksum=e205965ee58fc0dbfab3caa66c115103f5fe3b7d7a2d8874caa8aca8697913ac
+
+do_install() {
+	vinstall ${pkgname}-${version}/dictionaries/vi-DauCu.aff 644 /usr/share/hunspell
+	vinstall ${pkgname}-${version}/dictionaries/vi-DauCu.dic 644 /usr/share/hunspell
+	vinstall ${pkgname}-${version}/dictionaries/vi-DauMoi.aff 644 /usr/share/hunspell
+	vinstall ${pkgname}-${version}/dictionaries/vi-DauMoi.dic 644 /usr/share/hunspell
+}
