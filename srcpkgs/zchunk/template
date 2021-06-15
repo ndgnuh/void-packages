@@ -1,6 +1,6 @@
 # Template file for 'zchunk'
 pkgname=zchunk
-version=1.1.11
+version=1.1.15
 revision=1
 build_style=meson
 hostmakedepends="pkg-config"
@@ -10,7 +10,7 @@ maintainer="Duncaen <duncaen@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="https://github.com/zchunk/zchunk"
 distfiles="https://github.com/zchunk/zchunk/archive/${version}.tar.gz"
-checksum=febbbfb1de7720641e7e36cef6ae0ce8ed18684e3faf539f703a5497f830267f
+checksum=ae7bc378a8532ca734b6503b53a8739f4a5ba1494074ef09a64135f7d470c72c
 
 case "$XBPS_TARGET_MACHINE" in
 	*-musl) makedepends+=" argp-standalone"
