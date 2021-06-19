@@ -1,0 +1,24 @@
+# Template file for 'phonesim'
+pkgname=phonesim
+version=1.21.git
+revision=1
+build_style=gnu-configure
+configure_args="--enable-maintainer-mode"
+hostmakedepends="git automake autoconf pkg-config"
+makedepends="qt5 qt5-devel qt5-core qt5-gui qt5-xml qt5-network qt5-dbus qt5-script-devel qt5-widgets qt5-declarative-devel"
+depends="qt5 qt5-core qt5-gui qt5-xml qt5-network qt5-dbus qt5-script qt5-declarative libpng freetype libSM libICE libXrender fontconfig"
+short_desc="Phone Simulator for modem testing"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-2.0-only"
+homepage="https://git.kernel.org/pub/scm/network/ofono/phonesim.git"
+#distfiles="https://git.kernel.org/pub/scm/network/ofono/phonesim.git/snapshot/phonesim-${version}.tar.gz"
+#checksum=8e59d9b72fc7653a8d5e5827896569725a917846ef0ad8aa7c3a1ef6704b6793
+
+# 1.21 doesn't really work with QT5
+do_fetch() {
+	git clone "$homepage" "$wrksrc"
+}
+
+pre_configure() {
+	./bootstrap
+}
