@@ -1,0 +1,4 @@
+#!/bin/sh
+! [ -d /run/pulse ] && install -m 755 -g pipewire -o pipewire -d /run/pulse
+umask 002
+PULSE_RUNTIME_PATH=/run exec chpst -u pipewire:pipewire pipewire-pulse

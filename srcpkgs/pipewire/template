@@ -1,6 +1,6 @@
 # Template file for 'pipewire'
 pkgname=pipewire
-version=0.3.28
+version=0.3.30
 revision=1
 build_style=meson
 configure_args="-Dman=enabled -Dgstreamer=enabled -Ddocs=enabled -Dsystemd=disabled
@@ -18,7 +18,9 @@ license="MIT"
 homepage="https://pipewire.org/"
 changelog="https://gitlab.freedesktop.org/pipewire/pipewire/-/raw/master/NEWS"
 distfiles="https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/${version}/pipewire-${version}.tar.gz"
-checksum=1d9271e121a5049aef379e9bb7c50524faa6f971e668806637d7b9df1b7cab88
+checksum=09a002a0846e168e8dc61b3aa579d38885aef32ac971351d5d3cde20bcd1759b
+make_dirs="/var/lib/pipewire 0755 pipewire pipewire"
+system_accounts="pipewire"
 
 build_options="sdl2"
 
@@ -36,6 +38,8 @@ fi
 post_install() {
 	vlicense LICENSE
 	vdoc "${FILESDIR}/README.voidlinux"
+	vsv pipewire
+	vsv pipewire-pulse
 }
 
 libpipewire_package() {
@@ -150,6 +154,7 @@ libjack-pipewire_package() {
 	pkg_install() {
 		vmove usr/lib/pipewire-0.3/jack
 		vmove usr/bin/pw-jack
+		vmove usr/share/man/man1/pw-jack.1
 	}
 }
 

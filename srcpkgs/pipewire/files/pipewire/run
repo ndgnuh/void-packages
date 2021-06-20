@@ -1,0 +1,4 @@
+#!/bin/sh
+! [ -d /run/pipewire ] && install -m 755 -g pipewire -o pipewire -d /run/pipewire
+umask 002
+PIPEWIRE_RUNTIME_DIR=/run/pipewire XDG_CONFIG_HOME=/var/lib exec chpst -u pipewire:pipewire pipewire
