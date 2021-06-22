@@ -1,0 +1,21 @@
+# Template file for 'python3-overleaf-sync'
+pkgname=python3-overleaf-sync
+_pkgname=overleaf-sync
+version=1.1.4
+revision=1
+wrksrc=${_pkgname}-${version}
+build_style=python3-module
+makedepends="python3-devel python3-requests python3-BeautifulSoup4 python3-dateutil python3-click python3-socketIO-client python3-yaspin"
+depends="python3 python3-requests python3-BeautifulSoup4 python3-dateutil python3-click python3-socketIO-client python3-yaspin python3-PyQt5 python3-PyQt5-webengine python3-sip-PyQt5"
+short_desc="Overleaf Two-Way Synchronization "
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="MIT"
+homepage="https://github.com/moritzgloeckl/overleaf-sync"
+distfiles="${PYPI_SITE}/o/${_pkgname}/${_pkgname}-${version}.tar.gz"
+checksum=76374ef84d2aba1ea9064ace1398f940b95dec431c6d91c5dd0596aeea718596
+
+post_install() {
+	chmod 755 ${FILESDIR}/ols
+	mkdir $PKGDESTDIR/usr/bin -p
+	cp ${FILESDIR}/ols $PKGDESTDIR/usr/bin/
+}
