@@ -1,0 +1,15 @@
+# Template file for 'python3-yaspin'
+pkgname=python3-yaspin
+version=2.0.0
+revision=1
+wrksrc=yaspin-${version}
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+makedepends="python3-devel python3-isort python3-flake8"
+depends="python3 python3-termcolor"
+short_desc="Yet Another Terminal Spinner"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="MIT"
+homepage="https://github.com/pavdmyt/yaspin"
+distfiles="${PYPI_SITE}/y/yaspin/yaspin-${version}.tar.gz"
+checksum=0498039b3e110f53824417a9f59418a20843e8752b8b15c26bb81a659d4aec5c
