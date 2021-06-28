@@ -1,7 +1,7 @@
 # Template file for 'python3-overleaf-sync'
 pkgname=python3-overleaf-sync
 _pkgname=overleaf-sync
-version=1.1.4
+version=1.1.5
 revision=1
 wrksrc=${_pkgname}-${version}
 build_style=python3-module
@@ -12,7 +12,7 @@ maintainer="ndgnuh <ndgnuh@protonmail.com>"
 license="MIT"
 homepage="https://github.com/moritzgloeckl/overleaf-sync"
 distfiles="${PYPI_SITE}/o/${_pkgname}/${_pkgname}-${version}.tar.gz"
-checksum=76374ef84d2aba1ea9064ace1398f940b95dec431c6d91c5dd0596aeea718596
+checksum=bfe53d9bdfaeeaa26dbb9e5cb6c70688740a7d10abfdb6c8d6def914df7f5f8a
 
 post_install() {
 	chmod 755 ${FILESDIR}/ols
