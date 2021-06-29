@@ -5,7 +5,7 @@ revision=1
 build_style=gnu-makefile
 hostmakedepends="git"
 makedepends="python3-gobject-devel gtk+3-devel gdk-pixbuf-devel gettext"
-depends=" python3-gobject gtk+3 gdk-pixbuf xrdb sassc librsvg glib coreutils bc coreutils"
+depends="glib-devel librsvg-utils python3-gobject gtk+3 gdk-pixbuf xrdb sassc librsvg glib coreutils bc coreutils"
 short_desc="Graphical application for generating different color variations of GTK themes"
 maintainer="ndgnuh <ndgnuh@protonmail.com>"
 license="GPL-3.0"
@@ -45,5 +45,5 @@ if [ $build_option_spotify ]; then
 fi
 
 do_fetch() {
-	git clone --depth 1 --branch ${version} --recursive https://github.com/themix-project/oomox.git $wrksrc
+	git clone --branch ${version} --recursive https://github.com/themix-project/oomox.git $wrksrc
 }
