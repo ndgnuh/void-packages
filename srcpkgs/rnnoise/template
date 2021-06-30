@@ -1,0 +1,21 @@
+# Template file for 'rnnoise'
+pkgname=rnnoise
+version=0.git
+revision=1
+build_style=gnu-configure
+hostmakedepends="git automake"
+makedepends="libtool"
+depends=""
+short_desc="Recurrent neural network for audio noise reduction"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="BSD-3.0-Clause"
+homepage="https://gitlab.xiph.org/xiph/rnnoise"
+
+do_fetch() {
+	git clone $homepage $wrksrc
+}
+
+
+pre_configure() {
+	./autogen.sh
+}
