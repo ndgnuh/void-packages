@@ -1,0 +1,30 @@
+# Template file for 'noisetorch-bin'
+pkgname=noisetorch-bin
+version=0.11.3
+revision=1
+archs="x86_64*"
+create_wrksrc=1
+hostmakedepends="tar xz"
+depends="pipewire"
+short_desc="Real-time microphone noise suppression on Linux"
+maintainer="ndgnuh <ndgnuh@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/lawl/NoiseTorch"
+distfiles="${homepage}/releases/download/${version}/NoiseTorch_x64.tgz"
+checksum="5b5d18157df9caf9188a7bb2b0cbb93a8b7a887fa5b29c5c4b5c2e11c927f1f0"
+nostrip=true
+
+do_extract() {
+	cp ${XBPS_SRCDISTDIR}/${pkgname}-${version}/LICENSE* $wrksrc/LICENSE
+	tar -C $wrksrc -xzf ${XBPS_SRCDISTDIR}/${pkgname}-${version}//NoiseTorch_x64.tgz
+}
+
+do_install() {
+	vbin $wrksrc/.local/bin/noisetorch
+	vinstall $wrksrc/.local/share/icons/hicolor/256x256/apps/noisetorch.png\
+		644 usr/share/icons/hicolor/256x256/apps/
+	vinstall $wrksrc/.local/share/applications/noisetorch.desktop \
+		644 usr/share/applications/
+	vinstall $FILESDIR/org.noisetorch.pulselimit-policy \
+		644 usr/share/polkit-1/actions
+}
